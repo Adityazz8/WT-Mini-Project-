@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Vehicle Management System</title>
+
+    <!-- External CSS -->
+    <link rel="stylesheet" href="style.css">
+
+    <!-- Internal CSS -->
+    <style>
+        body {
+            font-family: Arial;
+            background-color: #f2f2f2;
+        }
+
+        h1 {
+            text-align: center;
+            color: darkblue;
+        }
+
+        .nav {
+            text-align: center;
+            background-color: #333;
+            padding: 10px;
+        }
+
+        .nav a {
+            color: white;
+            margin: 10px;
+            text-decoration: none;
+            font-weight: bold;
+        }
+
+        table {
+            margin: auto;
+            border-collapse: collapse;
+            width: 70%;
+        }
+
+        th, td {
+            padding: 10px;
+            border: 1px solid black;
+            text-align: center;
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- Heading -->
+    <h1>Vehicle Management System</h1>
+
+    <!-- Navigation Links -->
+    <div class="nav">
+        <a href="index.html">Home</a>
+        <a href="cars.html">Cars</a>
+        <a href="bikes.html">Bikes</a>
+        <a href="contact.html">Contact</a>
+    </div>
+
+    <br>
+
+    <!-- Image -->
+    <center>
+        <img src="images/car.jpg" width="400" alt="Car Image">
+    </center>
+
+    <br>
+
+    <!-- List -->
+    <h2 style="text-align:center;">Our Services</h2>
+    <ul style="width: 300px; margin:auto;">
+        <li>Buy Vehicles</li>
+        <li>Sell Vehicles</li>
+        <li>Vehicle Maintenance</li>
+        <li>Best Price Guarantee</li>
+    </ul>
+
+    <br>
+
+    <!-- Table -->
+    <h2 style="text-align:center;">Featured Vehicles</h2>
+    <table>
+        <tr>
+            <th>Name</th>
+            <th>Type</th>
+            <th>Price</th>
+        </tr>
+        <tr>
+            <td>Honda City</td>
+            <td>Car</td>
+            <td>10,00,000</td>
+        </tr>
+        <tr>
+            <td>Yamaha R15</td>
+            <td>Bike</td>
+            <td>1,50,000</td>
+        </tr>
+    </table>
+
+    <br>
+
+    <!-- Form -->
+    <h2 style="text-align:center;">Quick Inquiry</h2>
+    <form style="text-align:center;" onsubmit="return validateForm()">
+        Name: <input type="text" id="name"><br><br>
+        Email: <input type="email" id="email"><br><br>
+        
+        <!-- Inline CSS -->
+        <input type="submit" value="Submit" style="background-color: green; color: white; padding: 8px;">
+    </form>
+
+    <!-- JavaScript Validation -->
+    <script>
+        function validateForm() {
+            let name = document.getElementById("name").value;
+            let email = document.getElementById("email").value;
+
+            if (name == "" || email == "") {
+                alert("All fields are required!");
+                return false;
+            }
+
+            alert("Form submitted successfully!");
+            return true;
+        }
+    </script>
+
+</body>
+</html>
