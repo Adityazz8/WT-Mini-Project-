@@ -1,0 +1,444 @@
+/* ===============================
+   ELITEDRIVE FINAL PREMIUM CSS
+   Light Luxury Modern UI
+   =============================== */
+
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap');
+
+body {
+
+    margin: 0;
+    font-family: 'Poppins', sans-serif;
+
+    background: linear-gradient(
+        135deg,
+        #f1f4f9,
+        #e6ecf5,
+        #f9fafc
+    );
+
+    color: #2c2c2c;
+
+}
+
+/* ================= NAVBAR ================= */
+
+nav {
+
+    position: sticky;
+    top: 0;
+
+    background: white;
+
+    padding: 18px;
+
+    text-align: center;
+
+    box-shadow:
+        0 4px 12px rgba(0,0,0,0.08);
+
+    z-index: 1000;
+
+}
+
+nav a {
+
+    color: #333;
+
+    margin: 0 18px;
+
+    text-decoration: none;
+
+    font-weight: 600;
+
+    transition: 0.3s;
+
+}
+
+nav a:hover {
+
+    color: #d4af37;
+
+}
+
+/* ================= HERO ================= */
+
+.hero {
+
+    height: 85vh;
+
+    background-image: url("car4.jpg");
+
+    background-size: cover;
+
+    background-position: center;
+
+    display: flex;
+
+    justify-content: center;
+
+    align-items: center;
+
+}
+
+.hero-text {
+
+    background: rgba(255,255,255,0.92);
+
+    padding: 35px;
+
+    border-radius: 18px;
+
+    box-shadow:
+        0 10px 30px rgba(0,0,0,0.15);
+
+}
+
+.hero h1 {
+
+    font-size: 52px;
+
+    color: #222;
+
+    font-weight: 700;
+
+    text-shadow:
+        0 3px 8px rgba(0,0,0,0.15);
+
+}
+
+.hero p {
+
+    font-size: 18px;
+
+    color: #666;
+
+}
+
+/* ================= SECTION ================= */
+
+section {
+
+    padding: 60px 40px;
+
+    margin-top: 40px;
+
+}
+
+/* ================= HEADINGS ================= */
+
+h2 {
+
+    font-size: 34px;
+
+    color: #d4af37;
+
+    font-weight: 700;
+
+    text-align: center;
+
+    margin-bottom: 40px;
+
+    text-shadow:
+        0 2px 6px rgba(0,0,0,0.1);
+
+}
+
+/* ================= GRID ================= */
+
+.grid {
+
+    display: grid;
+
+    grid-template-columns:
+        repeat(auto-fit, minmax(250px, 1fr));
+
+    gap: 30px;
+
+    width: 85%;
+
+    margin: auto;
+
+}
+
+/* ================= BRAND CARD ================= */
+
+.card {
+
+    background: white;
+
+    border-radius: 16px;
+
+    padding: 25px;
+
+    font-size: 18px;
+
+    font-weight: 500;
+
+    color: #333;
+
+    text-align: center;
+
+    box-shadow:
+        0 8px 20px rgba(0,0,0,0.08);
+
+    transition: 0.3s;
+
+}
+
+.card:hover {
+
+    transform: translateY(-8px);
+
+    box-shadow:
+        0 15px 35px rgba(212,175,55,0.25);
+
+}
+
+/* ================= FLIP CARD ================= */
+
+.flip-card {
+
+    width: 100%;
+
+    height: 320px;
+
+    perspective: 1000px;
+
+}
+
+.flip-card-inner {
+
+    position: relative;
+
+    width: 100%;
+
+    height: 100%;
+
+    transition: transform 0.8s;
+
+    transform-style: preserve-3d;
+
+    cursor: pointer;
+
+}
+
+.flip-card-inner.flipped {
+
+    transform: rotateY(180deg);
+
+}
+
+/* ================= FRONT ================= */
+
+.flip-card-front {
+
+    position: absolute;
+
+    width: 100%;
+
+    height: 100%;
+
+    backface-visibility: hidden;
+
+    background: white;
+
+    border-radius: 18px;
+
+    overflow: hidden;
+
+    box-shadow:
+        0 8px 20px rgba(0,0,0,0.1);
+
+}
+
+/* IMAGE FIXED SIZE */
+
+.flip-card-front img {
+
+    width: 100%;
+
+    height: 200px;
+
+    object-fit: cover;
+
+}
+
+/* TEXT */
+
+.card-text {
+
+    padding: 12px;
+
+}
+
+.card-text h3 {
+
+    margin: 5px 0;
+
+    color: #222;
+
+}
+
+.card-text p {
+
+    color: #777;
+
+    font-size: 14px;
+
+}
+
+/* ================= BACK ================= */
+
+.flip-card-back {
+
+    position: absolute;
+
+    width: 100%;
+
+    height: 100%;
+
+    backface-visibility: hidden;
+
+    transform: rotateY(180deg);
+
+    background: linear-gradient(
+        135deg,
+        #fff6e5,
+        #ffe8b3
+    );
+
+    border-radius: 18px;
+
+    padding: 18px;
+
+    font-size: 14px;
+
+    line-height: 1.6;
+
+    box-shadow:
+        0 8px 20px rgba(0,0,0,0.1);
+
+}
+
+/* ================= TABLE ================= */
+
+table {
+
+    width: 90%;
+
+    margin: auto;
+
+    border-collapse: collapse;
+
+    background: white;
+
+    box-shadow:
+        0 6px 15px rgba(0,0,0,0.08);
+
+}
+
+th {
+
+    background: linear-gradient(
+        to right,
+        #d4af37,
+        #b8962e
+    );
+
+    color: white;
+
+    padding: 15px;
+
+}
+
+td {
+
+    padding: 15px;
+
+    color: #333;
+
+}
+
+table, th, td {
+
+    border: 1px solid #ddd;
+
+}
+
+/* ================= FORM ================= */
+
+form {
+
+    max-width: 420px;
+
+    margin: auto;
+
+    background: white;
+
+    padding: 30px;
+
+    border-radius: 18px;
+
+    box-shadow:
+        0 8px 25px rgba(0,0,0,0.08);
+
+}
+
+input,
+select,
+textarea {
+
+    width: 100%;
+
+    padding: 12px;
+
+    margin-top: 10px;
+
+    border-radius: 8px;
+
+    border: 1px solid #ccc;
+
+}
+
+input[type="submit"] {
+
+    background: linear-gradient(
+        to right,
+        #d4af37,
+        #b8962e
+    );
+
+    color: white;
+
+    font-weight: bold;
+
+    cursor: pointer;
+
+    border: none;
+
+}
+
+input[type="submit"]:hover {
+
+    background: #222;
+
+}
+
+/* ================= FOOTER ================= */
+
+footer {
+
+    text-align: center;
+
+    padding: 20px;
+
+    background: white;
+
+    margin-top: 50px;
+
+    color: #555;
+
+    border-top: 1px solid #ddd;
+
+}

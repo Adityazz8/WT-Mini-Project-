@@ -1,0 +1,237 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+
+<title>Car Booking Form</title>
+
+<link rel="stylesheet" href="style.css">
+
+<script>
+
+/* Prompt when page loads */
+
+window.onload = function() {
+
+let userName = prompt("Enter your name:");
+
+if(userName != null && userName != "") {
+
+alert("Welcome " + userName + "! Book your luxury car now.");
+
+}
+
+}
+
+/* Validation Function */
+
+function validateForm() {
+
+let name =
+document.getElementById("name").value;
+
+let email =
+document.getElementById("email").value;
+
+let phone =
+document.getElementById("phone").value;
+
+let amount =
+document.getElementById("amount").value;
+
+/* Name Validation */
+
+if(name == "") {
+
+alert("Name cannot be empty");
+
+return false;
+
+}
+
+/* Email Validation */
+
+if(email.indexOf("@") == -1 ||
+email.indexOf(".") == -1) {
+
+alert("Invalid Email Address");
+
+return false;
+
+}
+
+/* Phone Validation */
+
+if(phone.length != 10) {
+
+alert("Phone number must be 10 digits");
+
+return false;
+
+}
+
+/* Amount Validation */
+
+if(amount == "" || amount <= 0) {
+
+alert("Enter valid booking amount");
+
+return false;
+
+}
+
+/* Success */
+
+alert("Booking Submitted Successfully!");
+
+return true;
+
+}
+
+</script>
+
+<style>
+
+/* Title */
+
+.page-title {
+
+text-align: center;
+
+color: #d4af37;
+
+font-size: 32px;
+
+margin-top: 30px;
+
+}
+
+/* Form */
+
+.form-container {
+
+width: 400px;
+
+margin: auto;
+
+margin-top: 40px;
+
+background: white;
+
+padding: 30px;
+
+border-radius: 18px;
+
+box-shadow:
+0 10px 25px rgba(0,0,0,0.15);
+
+}
+
+label {
+
+font-weight: 600;
+
+}
+
+input, select {
+
+width: 100%;
+
+padding: 12px;
+
+margin-top: 8px;
+
+margin-bottom: 18px;
+
+border-radius: 8px;
+
+border: 1px solid #ccc;
+
+}
+
+button {
+
+width: 100%;
+
+padding: 12px;
+
+background: linear-gradient(
+to right,
+#d4af37,
+#b8962e
+);
+
+color: white;
+
+font-weight: bold;
+
+border: none;
+
+border-radius: 8px;
+
+cursor: pointer;
+
+}
+
+button:hover {
+
+background: #222;
+
+}
+
+</style>
+
+</head>
+
+<body>
+
+<h2 class="page-title">
+
+Luxury Car Booking Form
+
+</h2>
+
+<div class="form-container">
+
+<form onsubmit="return validateForm()">
+
+<label>Name</label>
+
+<input type="text" id="name">
+
+<label>Email</label>
+
+<input type="text" id="email">
+
+<label>Phone Number</label>
+
+<input type="text" id="phone">
+
+<label>Select Car</label>
+
+<select>
+
+<option>Lamborghini</option>
+<option>Rolls Royce</option>
+<option>Bugatti</option>
+<option>Ferrari</option>
+
+</select>
+
+<label>Booking Amount ($)</label>
+
+<input type="number" id="amount">
+
+<button type="submit">
+
+Submit Booking
+
+</button>
+
+</form>
+
+</div>
+
+</body>
+
+</html>
