@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+
+<title>Login - EliteDrive</title>
+
+<link rel="stylesheet" href="style.css">
+
+</head>
+
+<body>
+
+<nav>
+<a href="index.html">Home</a>
+<a href="cars.html">Cars</a>
+<a href="bikes.html">Bikes</a>
+<a href="about.html">About</a>
+<a href="contact.html">Contact</a>
+<a href="booking.html">Car Booking</a>
+<a href="bike_booking.html">Bike Booking</a>
+<a href="login.html">Login</a>
+<a href="register.html">Register</a>
+</nav>
+
+<section class="form-section">
+<div class="form-card">
+<h2>Member Login</h2>
+<form onsubmit="return handleLogin()">
+<label>Email</label>
+<input type="email" id="loginEmail" placeholder="you@example.com" required>
+<label>Password</label>
+<input type="password" id="loginPassword" placeholder="Enter your password" required>
+<button type="submit">Login</button>
+<p class="small-text">New here? <a href="register.html">Create an account</a></p>
+</form>
+</div>
+</section>
+
+<script>
+function handleLogin() {
+    const email = document.getElementById('loginEmail').value.trim();
+    const password = document.getElementById('loginPassword').value.trim();
+
+    if (!email || !password) {
+        alert('Please enter your email and password.');
+        return false;
+    }
+
+    alert('Login successful. Redirecting to home page.');
+    window.location.href = 'index.html';
+    return false;
+}
+</script>
+
+</body>
+</html>

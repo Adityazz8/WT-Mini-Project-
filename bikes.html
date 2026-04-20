@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Bike Collection</title>
+    <link rel="stylesheet" href="style.css">
+<script>
+
+/* Flip card on click */
+
+function flipCard(card){
+
+card.classList.toggle("flipped");
+
+}
+
+</script>
+</head>
+
+<body>
+
+<nav>
+<a href="index.html">Home</a>
+<a href="cars.html">Cars</a>
+<a href="bikes.html">Bikes</a>
+<a href="about.html">About</a>
+<a href="contact.html">Contact</a>
+<a href="booking.html">Car Booking</a>
+<a href="bike_booking.html">Bike Booking</a>
+<a href="login.html">Login</a>
+<a href="register.html">Register</a>
+</nav>
+
+<section>
+
+<h2>Bike Collection</h2>
+
+<div class="grid">
+
+<!-- BIKE 1 -->
+
+<div class="flip-card">
+
+<div class="flip-card-inner"
+onclick="flipCard(this)">
+
+<div class="flip-card-front">
+
+<img src="images/bike.jpg">
+
+<div class="card-text">
+
+<h3>Yamaha R15</h3>
+
+<p>Click for details</p>
+
+</div>
+
+</div>
+
+<div class="flip-card-back">
+
+<b>Brand:</b> Yamaha <br>
+<b>Price:</b> 1,50,000 <br>
+<a class="card-link" href="bike_booking.html">Book This Bike</a>
+</div>
+
+</div>
+
+</div>
+
+<!-- BIKE 2 -->
+
+<div class="flip-card">
+
+<div class="flip-card-inner"
+onclick="flipCard(this)">
+
+<div class="flip-card-front">
+
+<img src="images/bike.jpg">
+
+<div class="card-text">
+
+<h3>Royal Enfield Classic 350</h3>
+
+<p>Click for details</p>
+
+</div>
+
+</div>
+
+<div class="flip-card-back">
+
+<b>Brand:</b> Royal Enfield <br>
+<b>Price:</b> 2,00,000 <br>
+<a class="card-link" href="bike_booking.html">Book This Bike</a>
+</div>
+
+</div>
+
+</div>
+
+<!-- BIKE 3 -->
+
+<div class="flip-card">
+
+<div class="flip-card-inner"
+onclick="flipCard(this)">
+
+<div class="flip-card-front">
+
+<img src="images/bike.jpg">
+
+<div class="card-text">
+
+<h3>KTM Duke 200</h3>
+
+<p>Click for details</p>
+
+</div>
+
+</div>
+
+<div class="flip-card-back">
+
+<b>Brand:</b> KTM <br>
+<b>Price:</b> 1,80,000 <br>
+<a class="card-link" href="bike_booking.html">Book This Bike</a>
+</div>
+
+</div>
+
+</div>
+
+</div>
+
+</section>
+
+</body>
+</html>

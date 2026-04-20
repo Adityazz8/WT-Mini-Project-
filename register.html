@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+
+<title>Register - EliteDrive</title>
+
+<link rel="stylesheet" href="style.css">
+
+</head>
+
+<body>
+
+<nav>
+<a href="index.html">Home</a>
+<a href="cars.html">Cars</a>
+<a href="bikes.html">Bikes</a>
+<a href="about.html">About</a>
+<a href="contact.html">Contact</a>
+<a href="booking.html">Car Booking</a>
+<a href="bike_booking.html">Bike Booking</a>
+<a href="login.html">Login</a>
+<a href="register.html">Register</a>
+</nav>
+
+<section class="form-section">
+<div class="form-card">
+<h2>Create an Account</h2>
+<form onsubmit="return handleRegister()">
+<label>Full Name</label>
+<input type="text" id="registerName" placeholder="Your full name" required>
+<label>Email</label>
+<input type="email" id="registerEmail" placeholder="you@example.com" required>
+<label>Password</label>
+<input type="password" id="registerPassword" placeholder="Create a password" required>
+<label>Confirm Password</label>
+<input type="password" id="registerConfirm" placeholder="Re-enter your password" required>
+<button type="submit">Register</button>
+<p class="small-text">Already have an account? <a href="login.html">Login here</a></p>
+</form>
+</div>
+</section>
+
+<script>
+function handleRegister() {
+    const name = document.getElementById('registerName').value.trim();
+    const email = document.getElementById('registerEmail').value.trim();
+    const password = document.getElementById('registerPassword').value.trim();
+    const confirm = document.getElementById('registerConfirm').value.trim();
+
+    if (!name || !email || !password || !confirm) {
+        alert('Please complete all fields.');
+        return false;
+    }
+
+    if (password !== confirm) {
+        alert('Passwords do not match.');
+        return false;
+    }
+
+    alert('Registration successful. Redirecting to login page.');
+    window.location.href = 'login.html';
+    return false;
+}
+</script>
+
+</body>
+</html>
