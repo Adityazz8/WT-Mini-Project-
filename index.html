@@ -18,6 +18,7 @@
             <a href="bikes.html">Bikes</a>
             <a href="about.html">Collection</a>
             <a href="contact.html">Contact</a>
+            <div id="userAccessArea"></div>
         </nav>
     </header>
 
@@ -72,6 +73,42 @@
     <footer class="veluxe-footer">
         <p>© 2026 Veluxe Motors | Luxury Redefined</p>
     </footer>
+
+    <script>
+        window.addEventListener('load', function() {
+            const currentUser = JSON.parse(localStorage.getItem('currentUser'));
+            const userAccessArea = document.getElementById('userAccessArea');
+
+            if (currentUser) {
+                // User is logged in
+                if (currentUser.role === 'admin') {
+                    // Show admin access button
+                    userAccessArea.innerHTML = `
+                        <a href="admin-dashboard.html" class="nav-link" style="color: #d4af37; font-weight: 600;">🔐 Admin Dashboard</a>
+                        <button onclick="logout()" class="nav-link" style="background: none; border: none; color: #ddd; cursor: pointer; text-decoration: underline;">Logout</button>
+                    `;
+                } else {
+                    // Show user dashboard button
+                    userAccessArea.innerHTML = `
+                        <a href="user-dashboard.html" class="nav-link" style="color: #d4af37; font-weight: 600;">👤 My Dashboard</a>
+                        <button onclick="logout()" class="nav-link" style="background: none; border: none; color: #ddd; cursor: pointer; text-decoration: underline;">Logout</button>
+                    `;
+                }
+            } else {
+                // No user logged in
+                userAccessArea.innerHTML = `
+                    <a href="login.html" class="nav-link" style="color: #ddd;">Login</a>
+                    <a href="register.html" class="nav-link" style="color: #ddd;">Register</a>
+                `;
+            }
+        });
+
+        function logout() {
+            localStorage.removeItem('currentUser');
+            alert('Logged out successfully.');
+            location.reload();
+        }
+    </script>
 
 </body>
 </html>

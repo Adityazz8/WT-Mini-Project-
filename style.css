@@ -643,6 +643,18 @@ footer {
     color: gold;
 }
 
+.nav-link {
+    margin-left: 28px;
+    text-decoration: none;
+    color: #ddd;
+    font-size: 15px;
+    transition: 0.3s;
+}
+
+.nav-link:hover {
+    color: gold;
+}
+
 /* HERO SECTION */
 .veluxe-hero {
     min-height: 100vh;
@@ -755,7 +767,105 @@ footer {
     color: #aaa;
 }
 
-/* RESPONSIVE LAYOUT */
+/* ================= USERS BUTTON & DROPDOWN ================= */
+.veluxe-nav {
+    display: flex;
+    gap: 20px;
+    align-items: center;
+}
+
+.users-dropdown-container {
+    position: relative;
+    display: inline-block;
+}
+
+.users-btn {
+    background: linear-gradient(135deg, #d4af37, #b8962e);
+    color: #000;
+    border: none;
+    padding: 10px 16px;
+    border-radius: 999px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: 0.3s ease;
+    font-size: 14px;
+}
+
+.users-btn:hover {
+    background: linear-gradient(135deg, #e5c158, #d4af37);
+    transform: translateY(-2px);
+}
+
+.users-dropdown {
+    position: absolute;
+    top: 45px;
+    right: 0;
+    background: white;
+    border: 1px solid #ddd;
+    border-radius: 12px;
+    box-shadow: 0 8px 20px rgba(0,0,0,0.15);
+    min-width: 320px;
+    max-height: 600px;
+    overflow-y: auto;
+    display: none;
+    z-index: 999;
+}
+
+.user-item {
+    padding: 12px 16px;
+    border-bottom: 1px solid #eee;
+    transition: 0.2s;
+}
+
+.user-item:last-child {
+    border-bottom: none;
+}
+
+.user-item:hover {
+    background: #f8f9fa;
+}
+
+.user-name {
+    font-weight: 600;
+    color: #222;
+    margin-bottom: 4px;
+}
+
+.user-email {
+    font-size: 12px;
+    color: #999;
+    margin-bottom: 4px;
+}
+
+.user-phone {
+    font-size: 11px;
+    color: #aaa;
+    margin-bottom: 4px;
+}
+
+.user-registered {
+    font-size: 10px;
+    color: #bbb;
+    margin-bottom: 8px;
+}
+
+.user-bookings {
+    margin-top: 8px;
+    padding-top: 8px;
+    border-top: 1px solid #f0f0f0;
+}
+
+.booking-info {
+    font-size: 11px;
+    color: #555;
+    padding: 6px;
+    margin-top: 4px;
+    background: #f9f9f9;
+    border-radius: 4px;
+    line-height: 1.4;
+}
+
+/* ================= RESPONSIVE LAYOUT ================= */
 @media (max-width: 900px) {
     nav {
         padding: 14px 18px;

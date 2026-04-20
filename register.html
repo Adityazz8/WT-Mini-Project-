@@ -58,6 +58,30 @@ function handleRegister() {
         return false;
     }
 
+    // Save user to localStorage
+    let users = JSON.parse(localStorage.getItem('registeredUsers')) || [];
+    
+    // Check if user already exists
+    if (users.some(user => user.email === email)) {
+        alert('This email is already registered.');
+        return false;
+    }
+    
+    // Add new user
+    users.push({
+        name: name,
+        email: email,
+        phone: '',
+        registeredAt: new Date().toLocaleString(),
+        bookings: []
+    });
+    
+    // Save to localStorage
+    localStorage.setItem('registeredUsers', JSON.stringify(users));
+    
+    // Set as currently logged-in user
+    localStorage.setItem('currentUser', email);
+
     alert('Registration successful. Redirecting to login page.');
     window.location.href = 'login.html';
     return false;

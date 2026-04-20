@@ -36,6 +36,9 @@ document.getElementById("email").value;
 let phone =
 document.getElementById("phone").value;
 
+let carType =
+document.querySelector("select").value;
+
 let amount =
 document.getElementById("amount").value;
 
@@ -79,6 +82,31 @@ alert("Enter valid booking amount");
 return false;
 
 }
+
+// Save booking to user's profile
+let users = JSON.parse(localStorage.getItem('registeredUsers')) || [];
+let userIndex = users.findIndex(u => u.email === email);
+
+if (userIndex === -1) {
+    alert("User not registered. Please register first.");
+    return false;
+}
+
+const booking = {
+    type: 'Car',
+    carType: carType,
+    phone: phone,
+    amount: amount,
+    bookingDate: new Date().toLocaleString()
+};
+
+if (!users[userIndex].bookings) {
+    users[userIndex].bookings = [];
+}
+users[userIndex].bookings.push(booking);
+users[userIndex].phone = phone;
+
+localStorage.setItem('registeredUsers', JSON.stringify(users));
 
 /* Success */
 
