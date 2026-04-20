@@ -1,15 +1,118 @@
 <!DOCTYPE html>
-<html>
-
+<html lang="en">
 <head>
-<title>Frames Example</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gallery - Veluxe Motors</title>
+    <link rel="stylesheet" href="../style.css">
 </head>
+<body>
+    <!-- NAVBAR -->
+    <header>
+        <div class="navbar-container">
+            <div class="logo">VELUXE</div>
+            <nav>
+                <a href="index.html">Home</a>
+                <a href="cars.html">Cars</a>
+                <a href="bikes.html">Bikes</a>
+                <a href="about.html">About</a>
+                <div id="userAccessArea"></div>
+            </nav>
+        </div>
+    </header>
 
-<frameset cols="30%,70%">
+    <!-- HERO SECTION -->
+    <section class="hero" style="height: 50vh;">
+        <div class="hero-content">
+            <h1>Gallery</h1>
+            <p>Explore our premium vehicles</p>
+        </div>
+    </section>
 
-<frame src="about.html">
-<frame src="index.html">
+    <!-- GALLERY SECTION -->
+    <section style="padding: 4rem 2rem;">
+        <h2>Featured Vehicles</h2>
+        
+        <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 2rem;">
+            <div style="aspect-ratio: 4/3; background: linear-gradient(135deg, #1a1a1a, #2c3e50); border-radius: 12px; overflow: hidden;">
+                <img src="https://images.unsplash.com/photo-1549399542-7e3f8b83ad38?w=600&h=400&fit=crop" alt="Mercedes" style="width: 100%; height: 100%; object-fit: cover;">
+            </div>
+            <div style="aspect-ratio: 4/3; background: linear-gradient(135deg, #1a1a1a, #2c3e50); border-radius: 12px; overflow: hidden;">
+                <img src="https://images.unsplash.com/photo-1552519507-da3b142c6e3d?w=600&h=400&fit=crop" alt="BMW" style="width: 100%; height: 100%; object-fit: cover;">
+            </div>
+            <div style="aspect-ratio: 4/3; background: linear-gradient(135deg, #1a1a1a, #2c3e50); border-radius: 12px; overflow: hidden;">
+                <img src="https://images.unsplash.com/photo-1493238792000-8113da705763?w=600&h=400&fit=crop" alt="Rolls Royce" style="width: 100%; height: 100%; object-fit: cover;">
+            </div>
+            <div style="aspect-ratio: 4/3; background: linear-gradient(135deg, #1a1a1a, #2c3e50); border-radius: 12px; overflow: hidden;">
+                <img src="https://images.unsplash.com/photo-1558981403-c5f9899a28bc?w=600&h=400&fit=crop" alt="Harley" style="width: 100%; height: 100%; object-fit: cover;">
+            </div>
+            <div style="aspect-ratio: 4/3; background: linear-gradient(135deg, #1a1a1a, #2c3e50); border-radius: 12px; overflow: hidden;">
+                <img src="https://images.unsplash.com/photo-1525609004556-c46c7d6cf023?w=600&h=400&fit=crop" alt="Ducati" style="width: 100%; height: 100%; object-fit: cover;">
+            </div>
+            <div style="aspect-ratio: 4/3; background: linear-gradient(135deg, #1a1a1a, #2c3e50); border-radius: 12px; overflow: hidden;">
+                <img src="https://images.unsplash.com/photo-1502920917128-1aa500764cbd?w=600&h=400&fit=crop" alt="Lamborghini" style="width: 100%; height: 100%; object-fit: cover;">
+            </div>
+        </div>
 
-</frameset>
+        <div style="text-align: center; margin-top: 3rem;">
+            <a href="booking.html" class="hero-btn">Reserve Your Vehicle</a>
+        </div>
+    </section>
 
+    <!-- FOOTER -->
+    <footer>
+        <div class="footer-content">
+            <div class="footer-section">
+                <h3>Veluxe Motors</h3>
+                <p>Your premium destination for luxury vehicle rentals.</p>
+            </div>
+            <div class="footer-section">
+                <h3>Quick Links</h3>
+                <a href="cars.html">Cars</a>
+                <a href="bikes.html">Bikes</a>
+                <a href="booking.html">Book Now</a>
+                <a href="contact.html">Contact</a>
+            </div>
+            <div class="footer-section">
+                <h3>Support</h3>
+                <a href="#">FAQ</a>
+                <a href="#">Support</a>
+                <a href="#">Terms & Conditions</a>
+                <a href="#">Privacy Policy</a>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 2026 Veluxe Motors. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            updateUserAccessArea();
+        });
+
+        function updateUserAccessArea() {
+            const currentUser = JSON.parse(localStorage.getItem('currentUser'));
+            const userAccessArea = document.getElementById('userAccessArea');
+
+            if (currentUser) {
+                userAccessArea.innerHTML = `
+                    <a href="#" style="color: #d4af37; font-weight: 600;">👤 ${currentUser.name}</a>
+                    <button onclick="logout()" class="nav-link" style="text-decoration: underline;">Logout</button>
+                `;
+            } else {
+                userAccessArea.innerHTML = `
+                    <a href="login.html" class="nav-link">Login</a>
+                    <a href="register.html" class="nav-link">Register</a>
+                `;
+            }
+        }
+
+        function logout() {
+            localStorage.removeItem('currentUser');
+            alert('Logged out successfully.');
+            location.reload();
+        }
+    </script>
+</body>
 </html>

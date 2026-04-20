@@ -1,277 +1,202 @@
 <!DOCTYPE html>
-<html>
-
+<html lang="en">
 <head>
-
-<title>Car Booking Form</title>
-
-<link rel="stylesheet" href="../style.css">
-
-<script>
-
-/* Prompt when page loads */
-
-window.onload = function() {
-
-let userName = prompt("Enter your name:");
-
-if(userName != null && userName != "") {
-
-alert("Welcome " + userName + "! Book your luxury car now.");
-
-}
-
-}
-
-/* Validation Function */
-
-function validateForm() {
-
-let name =
-document.getElementById("name").value;
-
-let email =
-document.getElementById("email").value;
-
-let phone =
-document.getElementById("phone").value;
-
-let carType =
-document.querySelector("select").value;
-
-let amount =
-document.getElementById("amount").value;
-
-/* Name Validation */
-
-if(name == "") {
-
-alert("Name cannot be empty");
-
-return false;
-
-}
-
-/* Email Validation */
-
-if(email.indexOf("@") == -1 ||
-email.indexOf(".") == -1) {
-
-alert("Invalid Email Address");
-
-return false;
-
-}
-
-/* Phone Validation */
-
-if(phone.length != 10) {
-
-alert("Phone number must be 10 digits");
-
-return false;
-
-}
-
-/* Amount Validation */
-
-if(amount == "" || amount <= 0) {
-
-alert("Enter valid booking amount");
-
-return false;
-
-}
-
-// Save booking to user's profile
-let users = JSON.parse(localStorage.getItem('registeredUsers')) || [];
-let userIndex = users.findIndex(u => u.email === email);
-
-if (userIndex === -1) {
-    alert("User not registered. Please register first.");
-    return false;
-}
-
-const booking = {
-    type: 'Car',
-    carType: carType,
-    phone: phone,
-    amount: amount,
-    bookingDate: new Date().toLocaleString()
-};
-
-if (!users[userIndex].bookings) {
-    users[userIndex].bookings = [];
-}
-users[userIndex].bookings.push(booking);
-users[userIndex].phone = phone;
-
-localStorage.setItem('registeredUsers', JSON.stringify(users));
-
-/* Success */
-
-alert("Booking Submitted Successfully!");
-
-return true;
-
-}
-
-</script>
-
-<style>
-
-/* Title */
-
-.page-title {
-
-text-align: center;
-
-color: #d4af37;
-
-font-size: 32px;
-
-margin-top: 30px;
-
-}
-
-/* Form */
-
-.form-container {
-
-width: 400px;
-
-margin: auto;
-
-margin-top: 40px;
-
-background: white;
-
-padding: 30px;
-
-border-radius: 18px;
-
-box-shadow:
-0 10px 25px rgba(0,0,0,0.15);
-
-}
-
-label {
-
-font-weight: 600;
-
-}
-
-input, select {
-
-width: 100%;
-
-padding: 12px;
-
-margin-top: 8px;
-
-margin-bottom: 18px;
-
-border-radius: 8px;
-
-border: 1px solid #ccc;
-
-}
-
-button {
-
-width: 100%;
-
-padding: 12px;
-
-background: linear-gradient(
-to right,
-#d4af37,
-#b8962e
-);
-
-color: white;
-
-font-weight: bold;
-
-border: none;
-
-border-radius: 8px;
-
-cursor: pointer;
-
-}
-
-button:hover {
-
-background: #222;
-
-}
-
-</style>
-
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Book Now - Veluxe Motors</title>
+    <link rel="stylesheet" href="../style.css">
 </head>
-
 <body>
+    <!-- NAVBAR -->
+    <header>
+        <div class="navbar-container">
+            <div class="logo">VELUXE</div>
+            <nav>
+                <a href="index.html">Home</a>
+                <a href="cars.html">Cars</a>
+                <a href="bikes.html">Bikes</a>
+                <a href="booking.html" class="active">Bookings</a>
+                <a href="contact.html">Contact</a>
+                <div id="userAccessArea"></div>
+            </nav>
+        </div>
+    </header>
 
-<nav>
-<a href="index.html">Home</a>
-<a href="cars.html">Cars</a>
-<a href="bikes.html">Bikes</a>
-<a href="about.html">About</a>
-<a href="contact.html">Contact</a>
-<a href="booking.html">Car Booking</a>
-<a href="bike_booking.html">Bike Booking</a>
-<a href="login.html">Login</a>
-<a href="register.html">Register</a>
-</nav>
+    <!-- BOOKING FORM -->
+    <section style="padding: 2rem;">
+        <h2>Reserve Your Vehicle</h2>
+        
+        <div class="form-container">
+            <div id="successMessage" class="success-message">Booking confirmed! Check your email for details.</div>
+            <div id="errorMessage" class="error-message">Please fill in all required fields correctly.</div>
 
-<h2 class="page-title">
+            <form id="bookingForm" onsubmit="submitBooking(event)">
+                <div class="form-group">
+                    <label>Selected Vehicle:</label>
+                    <input type="text" id="selectedVehicle" readonly>
+                </div>
 
-Luxury Car Booking Form
+                <div class="form-group">
+                    <label>Full Name *</label>
+                    <input type="text" name="name" required>
+                </div>
 
-</h2>
+                <div class="form-group">
+                    <label>Email *</label>
+                    <input type="email" name="email" required>
+                </div>
 
-<div class="form-container">
+                <div class="form-group">
+                    <label>Phone *</label>
+                    <input type="tel" name="phone" required>
+                </div>
 
-<form onsubmit="return validateForm()">
+                <div class="form-group">
+                    <label>Pickup Date *</label>
+                    <input type="date" name="pickupDate" required>
+                </div>
 
-<label>Name</label>
+                <div class="form-group">
+                    <label>Dropoff Date *</label>
+                    <input type="date" name="dropoffDate" required>
+                </div>
 
-<input type="text" id="name">
+                <div class="form-group">
+                    <label>Driver's License *</label>
+                    <input type="text" name="license" placeholder="License Number" required>
+                </div>
 
-<label>Email</label>
+                <div class="form-group">
+                    <label>Additional Requirements</label>
+                    <textarea name="requirements" placeholder="Any special requests or requirements"></textarea>
+                </div>
 
-<input type="text" id="email">
+                <button type="submit" class="form-btn">Confirm Booking</button>
+            </form>
+        </div>
 
-<label>Phone Number</label>
+        <!-- BOOKING CARDS -->
+        <div style="margin-top: 3rem;">
+            <h2>Why Book With Us?</h2>
+            <div class="cards-grid">
+                <div class="card">
+                    <div class="card-content">
+                        <h3 class="card-title">✓ Instant Confirmation</h3>
+                        <p class="card-text">Get your booking confirmed immediately</p>
+                    </div>
+                </div>
+                <div class="card">
+                    <div class="card-content">
+                        <h3 class="card-title">✓ Free Cancellation</h3>
+                        <p class="card-text">Cancel up to 24 hours before pickup</p>
+                    </div>
+                </div>
+                <div class="card">
+                    <div class="card-content">
+                        <h3 class="card-title">✓ Insurance Included</h3>
+                        <p class="card-text">Comprehensive coverage included</p>
+                    </div>
+                </div>
+                <div class="card">
+                    <div class="card-content">
+                        <h3 class="card-title">✓ 24/7 Support</h3>
+                        <p class="card-text">Round-the-clock customer assistance</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
 
-<input type="text" id="phone">
+    <!-- FOOTER -->
+    <footer>
+        <div class="footer-content">
+            <div class="footer-section">
+                <h3>Veluxe Motors</h3>
+                <p>Your premium destination for luxury vehicle rentals.</p>
+            </div>
+            <div class="footer-section">
+                <h3>Quick Links</h3>
+                <a href="cars.html">Cars</a>
+                <a href="bikes.html">Bikes</a>
+                <a href="booking.html">Book Now</a>
+                <a href="contact.html">Contact</a>
+            </div>
+            <div class="footer-section">
+                <h3>Support</h3>
+                <a href="#">FAQ</a>
+                <a href="#">Support</a>
+                <a href="#">Terms & Conditions</a>
+                <a href="#">Privacy Policy</a>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 2026 Veluxe Motors. All rights reserved.</p>
+        </div>
+    </footer>
 
-<label>Select Car</label>
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const selectedItem = localStorage.getItem('selectedItem') || 'Luxury Vehicle';
+            document.getElementById('selectedVehicle').value = selectedItem;
+            updateUserAccessArea();
+        });
 
-<select>
+        function submitBooking(event) {
+            event.preventDefault();
+            
+            const formData = {
+                vehicle: document.getElementById('selectedVehicle').value,
+                name: document.querySelector('input[name="name"]').value,
+                email: document.querySelector('input[name="email"]').value,
+                phone: document.querySelector('input[name="phone"]').value,
+                pickupDate: document.querySelector('input[name="pickupDate"]').value,
+                dropoffDate: document.querySelector('input[name="dropoffDate"]').value,
+                license: document.querySelector('input[name="license"]').value,
+                requirements: document.querySelector('textarea[name="requirements"]').value,
+                bookedAt: new Date().toISOString()
+            };
 
-<option>Lamborghini</option>
-<option>Rolls Royce</option>
-<option>Bugatti</option>
-<option>Ferrari</option>
+            // Validate dates
+            if (new Date(formData.pickupDate) >= new Date(formData.dropoffDate)) {
+                document.getElementById('errorMessage').style.display = 'block';
+                document.getElementById('successMessage').style.display = 'none';
+                return;
+            }
 
-</select>
+            // Store booking
+            let bookings = JSON.parse(localStorage.getItem('bookings')) || [];
+            bookings.push(formData);
+            localStorage.setItem('bookings', JSON.stringify(bookings));
 
-<label>Booking Amount ($)</label>
+            // Show success message
+            document.getElementById('successMessage').style.display = 'block';
+            document.getElementById('errorMessage').style.display = 'none';
+            document.getElementById('bookingForm').reset();
+            document.getElementById('selectedVehicle').value = localStorage.getItem('selectedItem') || 'Luxury Vehicle';
+        }
 
-<input type="number" id="amount">
+        function updateUserAccessArea() {
+            const currentUser = JSON.parse(localStorage.getItem('currentUser'));
+            const userAccessArea = document.getElementById('userAccessArea');
 
-<button type="submit">
+            if (currentUser) {
+                userAccessArea.innerHTML = `
+                    <a href="#" style="color: #d4af37; font-weight: 600;">👤 ${currentUser.name}</a>
+                    <button onclick="logout()" class="nav-link" style="text-decoration: underline;">Logout</button>
+                `;
+            } else {
+                userAccessArea.innerHTML = `
+                    <a href="login.html" class="nav-link">Login</a>
+                    <a href="register.html" class="nav-link">Register</a>
+                `;
+            }
+        }
 
-Submit Booking
-
-</button>
-
-</form>
-
-</div>
-
+        function logout() {
+            localStorage.removeItem('currentUser');
+            alert('Logged out successfully.');
+            location.reload();
+        }
+    </script>
 </body>
-
 </html>

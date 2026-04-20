@@ -1,92 +1,161 @@
 <!DOCTYPE html>
-<html>
-
+<html lang="en">
 <head>
-
-<title>Register - EliteDrive</title>
-
-<link rel="stylesheet" href="../style.css">
-
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Register - Veluxe Motors</title>
+    <link rel="stylesheet" href="../style.css">
 </head>
-
 <body>
+    <!-- NAVBAR -->
+    <header>
+        <div class="navbar-container">
+            <div class="logo">VELUXE</div>
+            <nav>
+                <a href="index.html">Home</a>
+                <a href="cars.html">Cars</a>
+                <a href="bikes.html">Bikes</a>
+                <a href="booking.html">Bookings</a>
+                <a href="contact.html">Contact</a>
+            </nav>
+        </div>
+    </header>
 
-<nav>
-<a href="index.html">Home</a>
-<a href="cars.html">Cars</a>
-<a href="bikes.html">Bikes</a>
-<a href="about.html">About</a>
-<a href="contact.html">Contact</a>
-<a href="booking.html">Car Booking</a>
-<a href="bike_booking.html">Bike Booking</a>
-<a href="login.html">Login</a>
-<a href="register.html">Register</a>
-</nav>
+    <!-- HERO SECTION -->
+    <section class="hero" style="height: 40vh;">
+        <div class="hero-content">
+            <h1>Join Veluxe</h1>
+            <p>Create your premium account</p>
+        </div>
+    </section>
 
-<section class="form-section">
-<div class="form-card">
-<h2>Create an Account</h2>
-<form onsubmit="return handleRegister()">
-<label>Full Name</label>
-<input type="text" id="registerName" placeholder="Your full name" required>
-<label>Email</label>
-<input type="email" id="registerEmail" placeholder="you@example.com" required>
-<label>Password</label>
-<input type="password" id="registerPassword" placeholder="Create a password" required>
-<label>Confirm Password</label>
-<input type="password" id="registerConfirm" placeholder="Re-enter your password" required>
-<button type="submit">Register</button>
-<p class="small-text">Already have an account? <a href="login.html">Login here</a></p>
-</form>
-</div>
-</section>
+    <!-- REGISTRATION FORM -->
+    <section style="padding: 2rem;">
+        <div class="form-container">
+            <h2 style="margin-bottom: 1.5rem; text-align: center;">Create Your Account</h2>
+            
+            <div id="successMessage" class="success-message">Account created successfully! Please log in.</div>
+            <div id="errorMessage" class="error-message">All fields are required and passwords must match.</div>
 
-<script>
-function handleRegister() {
-    const name = document.getElementById('registerName').value.trim();
-    const email = document.getElementById('registerEmail').value.trim();
-    const password = document.getElementById('registerPassword').value.trim();
-    const confirm = document.getElementById('registerConfirm').value.trim();
+            <form id="registerForm" onsubmit="handleRegister(event)">
+                <div class="form-group">
+                    <label>Full Name *</label>
+                    <input type="text" id="fullName" required placeholder="John Doe">
+                </div>
 
-    if (!name || !email || !password || !confirm) {
-        alert('Please complete all fields.');
-        return false;
-    }
+                <div class="form-group">
+                    <label>Email Address *</label>
+                    <input type="email" id="registerEmail" required placeholder="your@email.com">
+                </div>
 
-    if (password !== confirm) {
-        alert('Passwords do not match.');
-        return false;
-    }
+                <div class="form-group">
+                    <label>Phone Number *</label>
+                    <input type="tel" id="phone" required placeholder="+1 (555) 123-4567">
+                </div>
 
-    // Save user to localStorage
-    let users = JSON.parse(localStorage.getItem('registeredUsers')) || [];
-    
-    // Check if user already exists
-    if (users.some(user => user.email === email)) {
-        alert('This email is already registered.');
-        return false;
-    }
-    
-    // Add new user
-    users.push({
-        name: name,
-        email: email,
-        phone: '',
-        registeredAt: new Date().toLocaleString(),
-        bookings: []
-    });
-    
-    // Save to localStorage
-    localStorage.setItem('registeredUsers', JSON.stringify(users));
-    
-    // Set as currently logged-in user
-    localStorage.setItem('currentUser', email);
+                <div class="form-group">
+                    <label>Date of Birth *</label>
+                    <input type="date" id="dob" required>
+                </div>
 
-    alert('Registration successful. Redirecting to login page.');
-    window.location.href = 'login.html';
-    return false;
-}
-</script>
+                <div class="form-group">
+                    <label>Password *</label>
+                    <input type="password" id="registerPassword" required placeholder="••••••••" minlength="6">
+                </div>
 
+                <div class="form-group">
+                    <label>Confirm Password *</label>
+                    <input type="password" id="confirmPassword" required placeholder="••••••••" minlength="6">
+                </div>
+
+                <div class="form-group">
+                    <label style="display: flex; align-items: center; cursor: pointer;">
+                        <input type="checkbox" id="terms" style="width: auto; margin-right: 0.5rem;" required>
+                        I agree to Terms & Conditions
+                    </label>
+                </div>
+
+                <button type="submit" class="form-btn">Create Account</button>
+            </form>
+
+            <div class="auth-link">
+                <p>Already have an account? <a href="login.html">Login here</a></p>
+            </div>
+        </div>
+    </section>
+
+    <!-- FOOTER -->
+    <footer>
+        <div class="footer-content">
+            <div class="footer-section">
+                <h3>Veluxe Motors</h3>
+                <p>Your premium destination for luxury vehicle rentals.</p>
+            </div>
+            <div class="footer-section">
+                <h3>Quick Links</h3>
+                <a href="cars.html">Cars</a>
+                <a href="bikes.html">Bikes</a>
+                <a href="booking.html">Book Now</a>
+                <a href="contact.html">Contact</a>
+            </div>
+            <div class="footer-section">
+                <h3>Support</h3>
+                <a href="#">FAQ</a>
+                <a href="#">Support</a>
+                <a href="#">Terms & Conditions</a>
+                <a href="#">Privacy Policy</a>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 2026 Veluxe Motors. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <script>
+        function handleRegister(event) {
+            event.preventDefault();
+            
+            const fullName = document.getElementById('fullName').value;
+            const email = document.getElementById('registerEmail').value;
+            const phone = document.getElementById('phone').value;
+            const dob = document.getElementById('dob').value;
+            const password = document.getElementById('registerPassword').value;
+            const confirmPassword = document.getElementById('confirmPassword').value;
+            const termsAccepted = document.getElementById('terms').checked;
+
+            if (!fullName || !email || !phone || !dob || !password || !confirmPassword || !termsAccepted) {
+                document.getElementById('errorMessage').style.display = 'block';
+                document.getElementById('successMessage').style.display = 'none';
+                return;
+            }
+
+            if (password !== confirmPassword) {
+                document.getElementById('errorMessage').style.display = 'block';
+                document.getElementById('successMessage').style.display = 'none';
+                return;
+            }
+
+            // Store user registration
+            let users = JSON.parse(localStorage.getItem('users')) || [];
+            users.push({
+                fullName,
+                email,
+                phone,
+                dob,
+                password,
+                registeredAt: new Date().toISOString()
+            });
+            localStorage.setItem('users', JSON.stringify(users));
+
+            // Show success
+            document.getElementById('successMessage').style.display = 'block';
+            document.getElementById('errorMessage').style.display = 'none';
+            document.getElementById('registerForm').reset();
+
+            setTimeout(() => {
+                window.location.href = 'login.html';
+            }, 2000);
+        }
+    </script>
 </body>
 </html>
