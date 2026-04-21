@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Luxury Cars - Veluxe Motors</title>
+    <link rel="stylesheet" href="../style.css">
+</head>
+<body>
+    <!-- NAVBAR -->
+    <header>
+        <div class="navbar-container">
+            <div class="logo">VELUXE</div>
+            <nav>
+                <a href="index.html">Home</a>
+                <a href="cars.html" class="active">Cars</a>
+                <a href="bikes.html">Bikes</a>
+                <a href="booking.html">Bookings</a>
+                <a href="contact.html">Contact</a>
+                <div id="userAccessArea"></div>
+            </nav>
+        </div>
+    </header>
+
+    <!-- HERO SECTION -->
+    <section class="hero" style="height: 50vh;">
+        <div class="hero-content">
+            <h1>Luxury Cars Collection</h1>
+            <p>Premium vehicles for discerning taste</p>
+        </div>
+    </section>
+
+    <!-- CARS LISTING -->
+    <section>
+        <h2>Our Premium Fleet</h2>
+        <div class="cards-grid" id="carsContainer">
+            <!-- Cars will be populated by JavaScript -->
+        </div>
+    </section>
+
+    <!-- FOOTER -->
+    <footer>
+        <div class="footer-content">
+            <div class="footer-section">
+                <h3>Veluxe Motors</h3>
+                <p>Your premium destination for luxury vehicle rentals.</p>
+            </div>
+            <div class="footer-section">
+                <h3>Quick Links</h3>
+                <a href="cars.html">Cars</a>
+                <a href="bikes.html">Bikes</a>
+                <a href="booking.html">Book Now</a>
+                <a href="contact.html">Contact</a>
+            </div>
+            <div class="footer-section">
+                <h3>Support</h3>
+                <a href="#">FAQ</a>
+                <a href="#">Support</a>
+                <a href="#">Terms & Conditions</a>
+                <a href="#">Privacy Policy</a>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 2026 Veluxe Motors. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <script>
+        const carsData = [
+            { id: 1, name: 'Mercedes-Benz S-Class', price: '$500/day', image: 'https://images.unsplash.com/photo-1549399542-7e3f8b83ad38?w=400&h=250&fit=crop', description: 'Premium luxury sedan with advanced features', specs: 'V8 Engine, 0-60: 4.5s, Seats: 5' },
+            { id: 2, name: 'BMW 7 Series', price: '$480/day', image: 'https://images.unsplash.com/photo-1552519507-da3b142c6e3d?w=400&h=250&fit=crop', description: 'Iconic performance meets elegance', specs: 'Twin-Turbo V8, 0-60: 4.3s, Seats: 5' },
+            { id: 3, name: 'Rolls Royce Phantom', price: '$900/day', image: 'https://images.unsplash.com/photo-1493238792000-8113da705763?w=400&h=250&fit=crop', description: 'Ultimate luxury and prestige', specs: 'Twin-Turbo V12, 0-60: 5.1s, Seats: 5' },
+            { id: 4, name: 'Lamborghini Huracán', price: '$650/day', image: 'https://images.unsplash.com/photo-1502920917128-1aa500764cbd?w=400&h=250&fit=crop', description: 'Italian superlative performance', specs: 'V10 Engine, 0-60: 2.9s, Seats: 2' },
+            { id: 5, name: 'Ferrari F8 Tributo', price: '$800/day', image: 'https://images.unsplash.com/photo-1503376780353-7e6692767b70?w=400&h=250&fit=crop', description: 'Pure Italian excellence', specs: 'V12 Engine, 0-60: 2.9s, Seats: 2' },
+            { id: 6, name: 'Porsche 911 Turbo', price: '$600/day', image: 'https://images.unsplash.com/photo-1548402528-3c2f18c4dcfa?w=400&h=250&fit=crop', description: 'German precision and power', specs: 'Twin-Turbo Flat-6, 0-60: 2.8s, Seats: 4' }
+        ];
+
+        function renderCars() {
+            const container = document.getElementById('carsContainer');
+            container.innerHTML = '';
+            carsData.forEach(car => {
+                const card = document.createElement('div');
+                card.className = 'card fade-in';
+                card.innerHTML = `
+                    <img src="${car.image}" alt="${car.name}" class="card-image">
+                    <div class="card-content">
+                        <h3 class="card-title">${car.name}</h3>
+                        <p class="card-text">${car.description}</p>
+                        <p class="card-text" style="font-size: 0.85rem; color: #888;">${car.specs}</p>
+                        <p class="card-price">${car.price}</p>
+                        <button class="card-btn" onclick="goToBooking('${car.name}')">Book Now</button>
+                    </div>
+                `;
+                container.appendChild(card);
+            });
+        }
+
+        function goToBooking(carName) {
+            localStorage.setItem('selectedItem', carName);
+            window.location.href = 'booking.html';
+        }
+
+        document.addEventListener('DOMContentLoaded', function() {
+            renderCars();
+            updateUserAccessArea();
+        });
+
+        function updateUserAccessArea() {
+            const currentUser = JSON.parse(localStorage.getItem('currentUser'));
+            const userAccessArea = document.getElementById('userAccessArea');
+
+            if (currentUser) {
+                userAccessArea.innerHTML = `
+                    <a href="#" style="color: #d4af37; font-weight: 600;">👤 ${currentUser.name}</a>
+                    <button onclick="logout()" class="nav-link" style="text-decoration: underline;">Logout</button>
+                `;
+            } else {
+                userAccessArea.innerHTML = `
+                    <a href="login.html" class="nav-link">Login</a>
+                    <a href="register.html" class="nav-link">Register</a>
+                `;
+            }
+        }
+
+        function logout() {
+            localStorage.removeItem('currentUser');
+            alert('Logged out successfully.');
+            location.reload();
+        }
+    </script>
+</body>
+</html>

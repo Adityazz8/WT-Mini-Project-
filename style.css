@@ -1,0 +1,756 @@
+/* ===================================
+   VELUXE MOTORS - PREMIUM STYLING
+   Professional Luxury Design System
+   =================================== */
+
+@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700&family=Poppins:wght@300;400;500;600;700&display=swap');
+
+/* ========================================
+   GLOBAL STYLES & RESET
+   Resets default browser styling and sets
+   the foundation for all elements
+   ======================================== */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+/* ========================================
+   CSS VARIABLES / CUSTOM PROPERTIES
+   Define color scheme and design tokens
+   for consistent styling throughout site
+   ======================================== */
+:root {
+    --primary-gold: #d4af37;    /* Brand accent color */
+    --dark-bg: #1a1a1a;         /* Dark background */
+    --light-bg: #f5f5f5;        /* Light background */
+    --text-dark: #2c2c2c;       /* Dark text */
+    --text-light: #ffffff;      /* Light text */
+    --border: #e0e0e0;          /* Border color */
+    --accent: #2c3e50;          /* Secondary accent */
+}
+
+/* ========================================
+   HTML & BODY DEFAULTS
+   Set base styles for all pages
+   ======================================== */
+html {
+    scroll-behavior: smooth;    /* Smooth scrolling for anchor links */
+}
+
+body {
+    font-family: 'Poppins', sans-serif;
+    color: var(--text-dark);
+    background-color: var(--light-bg);
+    line-height: 1.6;           /* Better readability */
+}
+
+/* ========================================
+   LINK STYLES
+   Styling for all anchor tags
+   ======================================== */
+a {
+    text-decoration: none;
+    color: inherit;
+    transition: 0.3s ease;      /* Smooth hover transitions */
+}
+
+/* ========================================
+   IMAGE STYLES
+   Responsive image settings
+   ======================================== */
+img {
+    max-width: 100%;
+    height: auto;
+    display: block;
+}
+
+/* ========================================
+   BUTTON STYLES
+   Global button styling for consistency
+   ======================================== */
+button {
+    font-family: inherit;
+    cursor: pointer;
+    transition: 0.3s ease;
+    border: none;
+    border-radius: 8px;
+}
+
+/* ===================================
+   NAVBAR / HEADER SECTION
+   Sticky navigation bar at top of page
+   with logo and navigation links
+   =================================== */
+
+header {
+    position: sticky;           /* Stays visible when scrolling */
+    top: 0;
+    z-index: 1000;              /* Above all other content */
+    background: var(--dark-bg);
+    box-shadow: 0 2px 10px rgba(0,0,0,0.15);
+}
+
+/* Container that holds navbar content */
+.navbar-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1rem 2rem;
+    max-width: 1400px;
+    margin: 0 auto;
+    width: 100%;
+}
+
+/* Brand/logo styling */
+.logo {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.8rem;
+    font-weight: 700;
+    color: var(--primary-gold);
+}
+
+/* Navigation menu */
+nav {
+    display: flex;
+    gap: 2rem;
+    align-items: center;
+    flex-wrap: wrap;
+}
+
+/* Individual nav links */
+nav a {
+    color: var(--text-light);
+    font-weight: 500;
+    padding: 0.5rem 1rem;
+    border-radius: 5px;
+}
+
+/* Hover and active states for nav links */
+nav a:hover,
+nav a.active {
+    color: var(--primary-gold);
+    background: rgba(212, 175, 55, 0.1);
+}
+
+/* User login/access area in navbar */
+#userAccessArea {
+    display: flex;
+    gap: 1rem;
+    align-items: center;
+    margin-left: auto;
+}
+
+/* Nav button styling */
+.nav-link {
+    background: none;
+    border: none;
+    font-size: 0.95rem;
+    cursor: pointer;
+    color: var(--text-light);
+}
+
+.nav-link:hover {
+    color: var(--primary-gold);
+}
+
+/* ===================================
+   HERO SECTION
+   Large banner at page top with
+   background image and main title
+   =================================== */
+
+.hero {
+    height: 100vh;              /* Full viewport height */
+    background: linear-gradient(135deg, #1a1a1a 0%, #2c3e50 100%);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--text-light);
+    text-align: center;
+    position: relative;
+    overflow: hidden;
+}
+
+/* Background image overlay effect */
+.hero::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: url('https://images.unsplash.com/photo-1503376780353-7e6692767b70?w=1200&h=800&fit=crop');
+    background-size: cover;
+    background-position: center;
+    opacity: 0.2;
+    z-index: 0;
+}
+
+/* Main hero content container */
+.hero-content {
+    max-width: 800px;
+    z-index: 10;
+    animation: fadeInUp 1s ease-out;
+}
+
+/* Hero heading */
+.hero h1 {
+    font-family: 'Playfair Display', serif;
+    font-size: 4rem;
+    margin-bottom: 1rem;
+    color: var(--primary-gold);
+    text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+}
+
+/* Hero subheading */
+.hero p {
+    font-size: 1.3rem;
+    margin-bottom: 2rem;
+    color: #e0e0e0;
+}
+
+/* Hero call-to-action button */
+.hero-btn {
+    background: var(--primary-gold);
+    color: var(--dark-bg);
+    padding: 1rem 2.5rem;
+    font-size: 1rem;
+    font-weight: 600;
+    margin: 0.5rem;
+    display: inline-block;
+}
+
+.hero-btn:hover {
+    background: #fff;
+    transform: translateY(-2px);    /* Lift effect on hover */
+    box-shadow: 0 5px 20px rgba(212, 175, 55, 0.4);
+}
+
+/* ===================================
+   SECTIONS & CARDS LAYOUT
+   Content sections with grid card layout
+   for displaying products/services
+   =================================== */
+
+/* Main section styling */
+section {
+    padding: 4rem 2rem;
+    max-width: 1400px;
+    margin: 0 auto;
+    width: 100%;
+}
+
+/* Section headings */
+section h2 {
+    font-family: 'Playfair Display', serif;
+    font-size: 2.5rem;
+    margin-bottom: 3rem;
+    text-align: center;
+    color: var(--dark-bg);
+}
+
+/* Responsive card grid layout */
+.cards-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 2rem;
+    margin-bottom: 2rem;
+}
+
+/* Individual card container */
+.card {
+    background: white;
+    border-radius: 12px;
+    overflow: hidden;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+    transition: transform 0.3s, box-shadow 0.3s;
+    cursor: pointer;
+}
+
+/* Card hover effect */
+.card:hover {
+    transform: translateY(-8px);    /* Lift on hover */
+    box-shadow: 0 8px 30px rgba(212, 175, 55, 0.2);
+}
+
+/* Card image styling */
+.card-image {
+    width: 100%;
+    height: 250px;
+    object-fit: cover;
+}
+
+/* Card content padding */
+.card-content {
+    padding: 1.5rem;
+}
+
+/* Card title styling */
+.card-title {
+    font-size: 1.3rem;
+    font-weight: 600;
+    margin-bottom: 0.5rem;
+    color: var(--dark-bg);
+}
+
+/* Card description text */
+.card-text {
+    color: #666;
+    font-size: 0.95rem;
+    margin-bottom: 1rem;
+}
+
+/* Card price display */
+.card-price {
+    font-size: 1.2rem;
+    color: var(--primary-gold);
+    font-weight: 700;
+    margin-bottom: 1rem;
+}
+
+/* Card call-to-action button */
+.card-btn {
+    background: var(--primary-gold);
+    color: var(--dark-bg);
+    padding: 0.7rem 1.5rem;
+    font-weight: 600;
+    width: 100%;
+    border-radius: 8px;
+}
+
+.card-btn:hover {
+    background: var(--text-dark);
+    color: var(--primary-gold);
+}
+
+/* ===================================
+   FORM STYLING
+   Styles for login, registration,
+   booking and other form inputs
+   =================================== */
+
+/* Form container */
+.form-container {
+    max-width: 500px;
+    margin: 2rem auto;
+    background: white;
+    padding: 2rem;
+    border-radius: 12px;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+}
+
+/* Form group (label + input pair) */
+.form-group {
+    margin-bottom: 1.5rem;
+}
+
+/* Form labels */
+label {
+    display: block;
+    margin-bottom: 0.5rem;
+    font-weight: 600;
+    color: var(--text-dark);
+}
+
+/* Form input fields */
+input,
+select,
+textarea {
+    width: 100%;
+    padding: 0.8rem;
+    border: 2px solid var(--border);
+    border-radius: 8px;
+    font-size: 0.95rem;
+    transition: border-color 0.3s;
+    font-family: inherit;
+}
+
+/* Focus state for inputs - gold highlight */
+input:focus,
+select:focus,
+textarea:focus {
+    outline: none;
+    border-color: var(--primary-gold);
+}
+
+/* Textarea specific settings */
+textarea {
+    resize: vertical;
+    min-height: 120px;
+}
+
+/* Form submit button */
+.form-btn {
+    background: var(--primary-gold);
+    color: var(--dark-bg);
+    padding: 0.8rem;
+    font-weight: 600;
+    width: 100%;
+    font-size: 1rem;
+}
+
+.form-btn:hover {
+    background: var(--dark-bg);
+    color: var(--primary-gold);
+    border: 2px solid var(--primary-gold);
+}
+
+/* ===================================
+   LOGIN PAGE ELEMENTS
+   Role selection buttons and
+   authentication link styling
+   =================================== */
+
+/* Role selection button group */
+.role-selection {
+    display: flex;
+    gap: 1.5rem;
+    margin-bottom: 2rem;
+    justify-content: center;
+}
+
+/* Individual role selection button */
+.role-btn {
+    padding: 0.8rem 1.5rem;
+    border: 2px solid var(--primary-gold);
+    background: white;
+    color: var(--primary-gold);
+    border-radius: 8px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+/* Active role selection state */
+.role-btn.active {
+    background: var(--primary-gold);
+    color: var(--dark-bg);
+}
+
+/* Authentication page links container */
+.auth-link {
+    text-align: center;
+    margin-top: 1.5rem;
+}
+
+/* Links to login/register pages */
+.auth-link a {
+    color: var(--primary-gold);
+    font-weight: 600;
+}
+
+.auth-link a:hover {
+    text-decoration: underline;
+}
+
+/* ===================================
+   BOOKING SECTION
+   Grid layout for booking options
+   with hover effects
+   =================================== */
+
+/* Booking section container with gradient */
+.booking-section {
+    background: linear-gradient(135deg, #f9f9f9, #ffffff);
+    border-radius: 12px;
+    padding: 2rem;
+    margin: 2rem 0;
+}
+
+/* Grid for booking option cards */
+.booking-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 1.5rem;
+}
+
+/* Individual booking card */
+.booking-card {
+    background: white;
+    padding: 1.5rem;
+    border-radius: 10px;
+    border: 2px solid var(--border);
+    transition: border-color 0.3s;
+}
+
+/* Highlight border on hover */
+.booking-card:hover {
+    border-color: var(--primary-gold);
+}
+
+/* Booking card heading */
+.booking-card h3 {
+    color: var(--primary-gold);
+    margin-bottom: 1rem;
+}
+
+/* ===================================
+   FOOTER SECTION
+   Site footer with links and info
+   at bottom of every page
+   =================================== */
+
+/* Main footer container */
+footer {
+    background: var(--dark-bg);
+    color: var(--text-light);
+    padding: 3rem 2rem;
+    margin-top: 4rem;
+}
+
+/* Footer content grid layout */
+.footer-content {
+    max-width: 1400px;
+    margin: 0 auto;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 2rem;
+    margin-bottom: 2rem;
+}
+
+/* Footer section headings */
+.footer-section h3 {
+    color: var(--primary-gold);
+    margin-bottom: 1rem;
+}
+
+/* Footer links */
+.footer-section a {
+    display: block;
+    margin-bottom: 0.5rem;
+    color: #ccc;
+}
+
+.footer-section a:hover {
+    color: var(--primary-gold);
+}
+
+/* Footer bottom with copyright */
+.footer-bottom {
+    border-top: 1px solid rgba(212, 175, 55, 0.3);
+    padding-top: 2rem;
+    text-align: center;
+    color: #999;
+}
+
+/* ===================================
+   UTILITY CLASSES
+   Reusable classes for common
+   styling needs throughout site
+   =================================== */
+
+/* Container for max-width layout */
+.container {
+    max-width: 1400px;
+    margin: 0 auto;
+    padding: 0 2rem;
+}
+
+/* Text centering utility */
+.text-center {
+    text-align: center;
+}
+
+/* Margin utilities for spacing */
+.mt-1 { margin-top: 1rem; }      /* Margin top 1rem */
+.mt-2 { margin-top: 2rem; }      /* Margin top 2rem */
+.mb-1 { margin-bottom: 1rem; }   /* Margin bottom 1rem */
+.mb-2 { margin-bottom: 2rem; }   /* Margin bottom 2rem */
+
+/* Primary button style (gold) */
+.btn-primary {
+    background: var(--primary-gold);
+    color: var(--dark-bg);
+}
+
+/* Secondary button style (dark) */
+.btn-secondary {
+    background: var(--dark-bg);
+    color: var(--primary-gold);
+}
+
+/* Success message styling (green) */
+.success-message {
+    background: #d4edda;
+    color: #155724;
+    padding: 1rem;
+    border-radius: 8px;
+    margin: 1rem 0;
+    display: none;
+}
+
+/* Error message styling (red) */
+.error-message {
+    background: #f8d7da;
+    color: #721c24;
+    padding: 1rem;
+    border-radius: 8px;
+    margin: 1rem 0;
+    display: none;
+}
+
+/* ===================================
+   ANIMATIONS
+   =================================== */
+
+@keyframes fadeInUp {
+    from {
+        opacity: 0;
+        transform: translateY(30px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.fade-in {
+    animation: fadeInUp 0.6s ease-out;
+}
+
+/* ===================================
+   RESPONSIVE
+   =================================== */
+
+@media (max-width: 768px) {
+    .navbar-container {
+        flex-direction: column;
+        gap: 1rem;
+    }
+
+    nav {
+        flex-wrap: wrap;
+        gap: 0.5rem;
+        width: 100%;
+    }
+
+    #userAccessArea {
+        margin-left: 0;
+        width: 100%;
+        justify-content: center;
+    }
+
+    .hero h1 {
+        font-size: 2.5rem;
+    }
+
+    section h2 {
+        font-size: 1.8rem;
+    }
+
+    .cards-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .role-selection {
+        flex-direction: column;
+    }
+
+    .role-btn {
+        width: 100%;
+    }
+}
+
+/* ===================================
+   DASHBOARD HEADERS
+   User and Admin dashboard page headers
+   with profile/admin info display
+   =================================== */
+
+/* User dashboard container */
+.user-container {
+    background: white;
+    border-radius: 12px;
+    padding: 30px;
+    margin: 30px auto;
+    max-width: 900px;
+    box-shadow: 0 8px 25px rgba(0,0,0,0.12);
+}
+
+/* User dashboard header section */
+.user-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 30px;
+    border-bottom: 2px solid var(--primary-gold);
+    padding-bottom: 20px;
+}
+
+/* User header title */
+.user-header h1 {
+    color: var(--primary-gold);
+    margin: 0;
+    font-size: 28px;
+}
+
+/* User info display area */
+.user-info {
+    text-align: right;
+    font-size: 14px;
+    color: #666;
+}
+
+.user-info p {
+    margin: 5px 0;
+}
+
+/* Admin dashboard container */
+.admin-container {
+    background: white;
+    border-radius: 12px;
+    padding: 30px;
+    margin: 30px auto;
+    max-width: 1200px;
+    box-shadow: 0 8px 25px rgba(0,0,0,0.12);
+}
+
+/* Admin dashboard header section */
+.admin-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 30px;
+    border-bottom: 2px solid var(--primary-gold);
+    padding-bottom: 20px;
+}
+
+/* Admin header title */
+.admin-header h1 {
+    color: var(--primary-gold);
+    margin: 0;
+    font-size: 28px;
+}
+
+/* Admin info display area */
+.admin-info {
+    text-align: right;
+    font-size: 14px;
+    color: #666;
+}
+
+.admin-info p {
+    margin: 5px 0;
+}
+
+/* Logout button styling (shared by both dashboards) */
+.logout-btn {
+    background: var(--primary-gold);
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 8px;
+    cursor: pointer;
+    font-weight: 600;
+    margin-top: 15px;
+    transition: 0.3s;
+}
+
+.logout-btn:hover {
+    background: #b8962e;
+}
+
+/* END OF STYLE.CSS */
+

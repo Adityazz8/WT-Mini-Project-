@@ -1,0 +1,190 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Veluxe Motors - Luxury Vehicles & Bikes</title>
+    <link rel="stylesheet" href="../style.css">
+</head>
+<body>
+    <!-- NAVBAR -->
+    <header>
+        <div class="navbar-container">
+            <div class="logo">VELUXE</div>
+            <nav>
+                <a href="index.html" class="active">Home</a>
+                <a href="cars.html">Cars</a>
+                <a href="bikes.html">Bikes</a>
+                <a href="booking.html">Bookings</a>
+                <a href="contact.html">Contact</a>
+                <div id="userAccessArea"></div>
+            </nav>
+        </div>
+    </header>
+
+    <!-- HERO SECTION -->
+    <section class="hero">
+        <div class="hero-content">
+            <h1>Drive the Future</h1>
+            <p>Experience unmatched luxury, performance, and elegance in every ride.</p>
+            <div>
+                <a href="cars.html" class="hero-btn">Explore Cars</a>
+                <a href="bikes.html" class="hero-btn">Explore Bikes</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- LUXURY CARS SECTION -->
+    <section id="cars-section">
+        <h2>Premium Luxury Cars</h2>
+        <div class="cards-grid" id="carsContainer">
+            <!-- Cars will be populated by JavaScript -->
+        </div>
+    </section>
+
+    <!-- LUXURY BIKES SECTION -->
+    <section id="bikes-section">
+        <h2>Luxury Bikes</h2>
+        <div class="cards-grid" id="bikesContainer">
+            <!-- Bikes will be populated by JavaScript -->
+        </div>
+    </section>
+
+    <!-- FEATURES SECTION -->
+    <section>
+        <h2>Why Choose Veluxe?</h2>
+        <div class="cards-grid">
+            <div class="card">
+                <div class="card-content">
+                    <h3 class="card-title">Premium Quality</h3>
+                    <p class="card-text">Only the finest luxury vehicles from world-renowned manufacturers</p>
+                </div>
+            </div>
+            <div class="card">
+                <div class="card-content">
+                    <h3 class="card-title">Expert Service</h3>
+                    <p class="card-text">Professional support and maintenance for your peace of mind</p>
+                </div>
+            </div>
+            <div class="card">
+                <div class="card-content">
+                    <h3 class="card-title">Flexible Booking</h3>
+                    <p class="card-text">Easy booking, transparent pricing, and flexible rental terms</p>
+                </div>
+            </div>
+            <div class="card">
+                <div class="card-content">
+                    <h3 class="card-title">24/7 Support</h3>
+                    <p class="card-text">Round-the-clock customer service for all your needs</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- FOOTER -->
+    <footer>
+        <div class="footer-content">
+            <div class="footer-section">
+                <h3>Veluxe Motors</h3>
+                <p>Your premium destination for luxury vehicle rentals and experiences.</p>
+            </div>
+            <div class="footer-section">
+                <h3>Quick Links</h3>
+                <a href="cars.html">Cars</a>
+                <a href="bikes.html">Bikes</a>
+                <a href="booking.html">Book Now</a>
+                <a href="contact.html">Contact</a>
+            </div>
+            <div class="footer-section">
+                <h3>Support</h3>
+                <a href="#">FAQ</a>
+                <a href="#">Support</a>
+                <a href="#">Terms & Conditions</a>
+                <a href="#">Privacy Policy</a>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 2026 Veluxe Motors. All rights reserved. | Luxury Redefined</p>
+        </div>
+    </footer>
+
+    <script>
+        // Sample data for cars and bikes
+        const carsData = [
+            { id: 1, name: 'Mercedes-Benz S-Class', price: '$500/day', image: 'https://images.unsplash.com/photo-1549399542-7e3f8b83ad38?w=400&h=250&fit=crop', description: 'Premium luxury sedan with advanced features' },
+            { id: 2, name: 'BMW 7 Series', price: '$480/day', image: 'https://images.unsplash.com/photo-1552519507-da3b142c6e3d?w=400&h=250&fit=crop', description: 'Iconic performance meets elegance' },
+            { id: 3, name: 'Rolls Royce Phantom', price: '$900/day', image: 'https://images.unsplash.com/photo-1493238792000-8113da705763?w=400&h=250&fit=crop', description: 'Ultimate luxury and prestige' }
+        ];
+
+        const bikesData = [
+            { id: 1, name: 'Harley-Davidson Street Glide', price: '$200/day', image: 'https://images.unsplash.com/photo-1558981403-c5f9899a28bc?w=400&h=250&fit=crop', description: 'The ultimate cruising experience' },
+            { id: 2, name: 'Ducati Panigale V4', price: '$180/day', image: 'https://images.unsplash.com/photo-1525609004556-c46c7d6cf023?w=400&h=250&fit=crop', description: 'Italian performance and style' },
+            { id: 3, name: 'BMW S1000RR', price: '$170/day', image: 'https://images.unsplash.com/photo-1558981403-c5f9899a28bc?w=400&h=250&fit=crop', description: 'Pure adrenaline and power' }
+        ];
+
+        // Function to render cards
+        function renderCards(data, containerId) {
+            const container = document.getElementById(containerId);
+            container.innerHTML = '';
+            data.forEach(item => {
+                const card = document.createElement('div');
+                card.className = 'card fade-in';
+                card.innerHTML = `
+                    <img src="${item.image}" alt="${item.name}" class="card-image">
+                    <div class="card-content">
+                        <h3 class="card-title">${item.name}</h3>
+                        <p class="card-text">${item.description}</p>
+                        <p class="card-price">${item.price}</p>
+                        <button class="card-btn" onclick="goToBooking('${item.name}')">Book Now</button>
+                    </div>
+                `;
+                container.appendChild(card);
+            });
+        }
+
+        // Function to navigate to booking
+        function goToBooking(itemName) {
+            localStorage.setItem('selectedItem', itemName);
+            window.location.href = 'booking.html';
+        }
+
+        // Initialize on page load
+        document.addEventListener('DOMContentLoaded', function() {
+            renderCards(carsData, 'carsContainer');
+            renderCards(bikesData, 'bikesContainer');
+            updateUserAccessArea();
+        });
+
+        // User access area management
+        function updateUserAccessArea() {
+            const currentUser = JSON.parse(localStorage.getItem('currentUser'));
+            const userAccessArea = document.getElementById('userAccessArea');
+
+            if (currentUser) {
+                userAccessArea.innerHTML = `
+                    <a href="#" style="color: #d4af37; font-weight: 600;">👤 ${currentUser.name}</a>
+                    <button onclick="logout()" class="nav-link" style="text-decoration: underline;">Logout</button>
+                `;
+            } else {
+                userAccessArea.innerHTML = `
+                    <a href="login.html" class="nav-link">Login</a>
+                    <a href="register.html" class="nav-link">Register</a>
+                `;
+            }
+        }
+
+        function logout() {
+            localStorage.removeItem('currentUser');
+            alert('Logged out successfully.');
+            location.reload();
+        }
+
+        // Update active nav
+        window.addEventListener('scroll', function() {
+            const navLinks = document.querySelectorAll('nav a');
+            navLinks.forEach(link => link.classList.remove('active'));
+            document.querySelector('nav a[href="index.html"]').classList.add('active');
+        });
+    </script>
+</body>
+</html>

@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login - Veluxe Motors</title>
+    <link rel="stylesheet" href="../style.css">
+</head>
+<body>
+    <!-- NAVBAR -->
+    <header>
+        <div class="navbar-container">
+            <div class="logo">VELUXE</div>
+            <nav>
+                <a href="index.html">Home</a>
+                <a href="cars.html">Cars</a>
+                <a href="bikes.html">Bikes</a>
+                <a href="booking.html">Bookings</a>
+                <a href="contact.html">Contact</a>
+            </nav>
+        </div>
+    </header>
+
+    <!-- HERO SECTION -->
+    <section class="hero" style="height: 40vh;">
+        <div class="hero-content">
+            <h1>Welcome Back</h1>
+            <p>Access your account</p>
+        </div>
+    </section>
+
+    <!-- LOGIN FORM -->
+    <section style="padding: 2rem;">
+        <div class="form-container">
+            <h2 style="margin-bottom: 1.5rem; text-align: center;">Login to Your Account</h2>
+            
+            <div id="errorMessage" class="error-message">Invalid email or password.</div>
+
+            <div class="role-selection">
+                <button type="button" class="role-btn active" onclick="setRole('customer', this)">Customer</button>
+                <button type="button" class="role-btn" onclick="setRole('admin', this)">Admin</button>
+            </div>
+
+            <form id="loginForm" onsubmit="handleLogin(event)">
+                <div class="form-group">
+                    <label>Email Address *</label>
+                    <input type="email" id="loginEmail" required placeholder="your@email.com">
+                </div>
+
+                <div class="form-group">
+                    <label>Password *</label>
+                    <input type="password" id="loginPassword" required placeholder="••••••••">
+                </div>
+
+                <div class="form-group">
+                    <label style="display: flex; align-items: center; cursor: pointer;">
+                        <input type="checkbox" style="width: auto; margin-right: 0.5rem;">
+                        Remember me
+                    </label>
+                </div>
+
+                <button type="submit" class="form-btn">Login</button>
+            </form>
+
+            <div class="auth-link">
+                <p>Don't have an account? <a href="register.html">Register here</a></p>
+            </div>
+        </div>
+
+        <!-- DEMO CREDENTIALS -->
+        <div style="max-width: 500px; margin: 2rem auto; background: #f0f4ff; padding: 1.5rem; border-radius: 12px; border-left: 4px solid var(--primary-gold);">
+            <h3 style="color: var(--primary-gold); margin-bottom: 1rem;">Demo Credentials</h3>
+            <p><strong>Customer:</strong><br>Email: customer@veluxe.com<br>Password: password123</p>
+            <p style="margin-top: 1rem;"><strong>Admin:</strong><br>Email: admin@veluxe.com<br>Password: admin123</p>
+        </div>
+    </section>
+
+    <!-- FOOTER -->
+    <footer>
+        <div class="footer-content">
+            <div class="footer-section">
+                <h3>Veluxe Motors</h3>
+                <p>Your premium destination for luxury vehicle rentals.</p>
+            </div>
+            <div class="footer-section">
+                <h3>Quick Links</h3>
+                <a href="cars.html">Cars</a>
+                <a href="bikes.html">Bikes</a>
+                <a href="booking.html">Book Now</a>
+                <a href="contact.html">Contact</a>
+            </div>
+            <div class="footer-section">
+                <h3>Support</h3>
+                <a href="#">FAQ</a>
+                <a href="#">Support</a>
+                <a href="#">Terms & Conditions</a>
+                <a href="#">Privacy Policy</a>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 2026 Veluxe Motors. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <script>
+        let selectedRole = 'customer';
+
+        function setRole(role, button) {
+            selectedRole = role;
+            document.querySelectorAll('.role-btn').forEach(btn => btn.classList.remove('active'));
+            button.classList.add('active');
+        }
+
+        function handleLogin(event) {
+            event.preventDefault();
+            
+            const email = document.getElementById('loginEmail').value;
+            const password = document.getElementById('loginPassword').value;
+            
+            // Demo credentials
+            const validCredentials = {
+                customer: { email: 'customer@veluxe.com', password: 'password123' },
+                admin: { email: 'admin@veluxe.com', password: 'admin123' }
+            };
+
+            const credentials = validCredentials[selectedRole];
+            
+            if (email === credentials.email && password === credentials.password) {
+                const user = {
+                    name: selectedRole === 'admin' ? 'Admin User' : 'Customer User',
+                    email: email,
+                    role: selectedRole,
+                    loginTime: new Date().toISOString()
+                };
+                
+                localStorage.setItem('currentUser', JSON.stringify(user));
+                alert(`Welcome ${user.name}!`);
+                window.location.href = 'index.html';
+            } else {
+                document.getElementById('errorMessage').style.display = 'block';
+            }
+        }
+    </script>
+</body>
+</html>

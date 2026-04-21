@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contact Us - Veluxe Motors</title>
+    <link rel="stylesheet" href="../style.css">
+</head>
+<body>
+    <!-- NAVBAR -->
+    <header>
+        <div class="navbar-container">
+            <div class="logo">VELUXE</div>
+            <nav>
+                <a href="index.html">Home</a>
+                <a href="cars.html">Cars</a>
+                <a href="bikes.html">Bikes</a>
+                <a href="booking.html">Bookings</a>
+                <a href="contact.html" class="active">Contact</a>
+                <div id="userAccessArea"></div>
+            </nav>
+        </div>
+    </header>
+
+    <!-- HERO SECTION -->
+    <section class="hero" style="height: 50vh;">
+        <div class="hero-content">
+            <h1>Get In Touch</h1>
+            <p>We'd love to hear from you</p>
+        </div>
+    </section>
+
+    <!-- CONTACT SECTION -->
+    <section style="padding: 4rem 2rem;">
+        <h2>Contact Information</h2>
+        
+        <div class="cards-grid" style="margin-bottom: 3rem;">
+            <div class="card">
+                <div class="card-content">
+                    <h3 class="card-title">📍 Address</h3>
+                    <p class="card-text">123 Luxury Drive<br>Premium City, PC 12345<br>United States</p>
+                </div>
+            </div>
+            <div class="card">
+                <div class="card-content">
+                    <h3 class="card-title">📞 Phone</h3>
+                    <p class="card-text">Main: +1 (555) 123-4567<br>Support: +1 (555) 987-6543<br>24/7 Hotline Available</p>
+                </div>
+            </div>
+            <div class="card">
+                <div class="card-content">
+                    <h3 class="card-title">✉️ Email</h3>
+                    <p class="card-text">Support: support@veluxe.com<br>Bookings: bookings@veluxe.com<br>Info: info@veluxe.com</p>
+                </div>
+            </div>
+            <div class="card">
+                <div class="card-content">
+                    <h3 class="card-title">🕐 Hours</h3>
+                    <p class="card-text">Mon-Fri: 9 AM - 8 PM<br>Sat: 10 AM - 6 PM<br>Sun: 11 AM - 5 PM</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- CONTACT FORM -->
+        <div class="form-container">
+            <h3 style="margin-bottom: 1.5rem; text-align: center;">Send us a Message</h3>
+            
+            <div id="successMessage" class="success-message">Thank you! We'll get back to you soon.</div>
+            
+            <form onsubmit="handleContactForm(event)">
+                <div class="form-group">
+                    <label>Your Name *</label>
+                    <input type="text" required placeholder="Your Name">
+                </div>
+
+                <div class="form-group">
+                    <label>Email Address *</label>
+                    <input type="email" required placeholder="your@email.com">
+                </div>
+
+                <div class="form-group">
+                    <label>Subject *</label>
+                    <select required>
+                        <option value="">Select a subject</option>
+                        <option value="booking">Booking Inquiry</option>
+                        <option value="complaint">Complaint</option>
+                        <option value="suggestion">Suggestion</option>
+                        <option value="general">General Inquiry</option>
+                    </select>
+                </div>
+
+                <div class="form-group">
+                    <label>Message *</label>
+                    <textarea required placeholder="Your message here..."></textarea>
+                </div>
+
+                <button type="submit" class="form-btn">Send Message</button>
+            </form>
+        </div>
+    </section>
+
+    <!-- FOOTER -->
+    <footer>
+        <div class="footer-content">
+            <div class="footer-section">
+                <h3>Veluxe Motors</h3>
+                <p>Your premium destination for luxury vehicle rentals.</p>
+            </div>
+            <div class="footer-section">
+                <h3>Quick Links</h3>
+                <a href="cars.html">Cars</a>
+                <a href="bikes.html">Bikes</a>
+                <a href="booking.html">Book Now</a>
+                <a href="contact.html">Contact</a>
+            </div>
+            <div class="footer-section">
+                <h3>Support</h3>
+                <a href="#">FAQ</a>
+                <a href="#">Support</a>
+                <a href="#">Terms & Conditions</a>
+                <a href="#">Privacy Policy</a>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 2026 Veluxe Motors. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            updateUserAccessArea();
+        });
+
+        function handleContactForm(event) {
+            event.preventDefault();
+            
+            document.getElementById('successMessage').style.display = 'block';
+            event.target.reset();
+            
+            setTimeout(() => {
+                document.getElementById('successMessage').style.display = 'none';
+            }, 4000);
+        }
+
+        function updateUserAccessArea() {
+            const currentUser = JSON.parse(localStorage.getItem('currentUser'));
+            const userAccessArea = document.getElementById('userAccessArea');
+
+            if (currentUser) {
+                userAccessArea.innerHTML = `
+                    <a href="#" style="color: #d4af37; font-weight: 600;">👤 ${currentUser.name}</a>
+                    <button onclick="logout()" class="nav-link" style="text-decoration: underline;">Logout</button>
+                `;
+            } else {
+                userAccessArea.innerHTML = `
+                    <a href="login.html" class="nav-link">Login</a>
+                    <a href="register.html" class="nav-link">Register</a>
+                `;
+            }
+        }
+
+        function logout() {
+            localStorage.removeItem('currentUser');
+            alert('Logged out successfully.');
+            location.reload();
+        }
+    </script>
+</body>
+</html>

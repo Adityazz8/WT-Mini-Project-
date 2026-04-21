@@ -1,0 +1,334 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>User Dashboard - Veluxe Motors</title>
+    <link rel="stylesheet" href="style.css">
+    <style>
+        .user-container {
+            background: white;
+            border-radius: 12px;
+            padding: 30px;
+            margin: 30px auto;
+            max-width: 900px;
+            box-shadow: 0 8px 25px rgba(0,0,0,0.12);
+        }
+
+        .user-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 30px;
+            border-bottom: 2px solid #d4af37;
+            padding-bottom: 20px;
+        }
+
+        .user-header h1 {
+            color: #d4af37;
+            margin: 0;
+            font-size: 28px;
+        }
+
+        .user-info {
+            text-align: right;
+            font-size: 14px;
+            color: #666;
+        }
+
+        .user-info p {
+            margin: 5px 0;
+        }
+
+        .logout-btn {
+            background: #d4af37;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 8px;
+            cursor: pointer;
+            font-weight: 600;
+            margin-top: 15px;
+            transition: 0.3s;
+        }
+
+        .logout-btn:hover {
+            background: #b8962e;
+        }
+
+        .profile-section {
+            background: linear-gradient(135deg, #f9f9f9, #f0f0f0);
+            padding: 20px;
+            border-radius: 10px;
+            margin-bottom: 30px;
+            border-left: 4px solid #d4af37;
+        }
+
+        .profile-section h2 {
+            color: #d4af37;
+            margin-top: 0;
+            margin-bottom: 20px;
+            font-size: 20px;
+        }
+
+        .profile-detail {
+            margin: 10px 0;
+            font-size: 15px;
+            color: #333;
+        }
+
+        .profile-detail strong {
+            color: #d4af37;
+            min-width: 120px;
+            display: inline-block;
+        }
+
+        .bookings-section {
+            margin-top: 30px;
+        }
+
+        .bookings-section h2 {
+            color: #d4af37;
+            margin-bottom: 20px;
+            font-size: 20px;
+            border-bottom: 2px solid #d4af37;
+            padding-bottom: 10px;
+        }
+
+        .booking-card {
+            background: white;
+            border: 1px solid #ddd;
+            border-radius: 10px;
+            padding: 20px;
+            margin-bottom: 15px;
+            transition: 0.3s;
+        }
+
+        .booking-card:hover {
+            box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+            transform: translateY(-2px);
+        }
+
+        .booking-card-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 15px;
+            border-bottom: 1px solid #eee;
+            padding-bottom: 10px;
+        }
+
+        .booking-type {
+            font-weight: 700;
+            font-size: 16px;
+            color: #d4af37;
+        }
+
+        .booking-vehicle {
+            color: #222;
+            font-weight: 600;
+            margin: 5px 0;
+        }
+
+        .booking-details {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+            gap: 15px;
+            font-size: 13px;
+            color: #666;
+        }
+
+        .booking-detail-item {
+            padding: 8px;
+            background: #f9f9f9;
+            border-radius: 5px;
+        }
+
+        .booking-detail-label {
+            font-weight: 600;
+            color: #333;
+            margin-bottom: 3px;
+        }
+
+        .no-bookings {
+            text-align: center;
+            padding: 30px;
+            color: #999;
+            font-style: italic;
+            background: #f9f9f9;
+            border-radius: 10px;
+        }
+
+        .action-buttons {
+            margin-top: 20px;
+            display: flex;
+            gap: 10px;
+            flex-wrap: wrap;
+        }
+
+        .btn {
+            padding: 10px 20px;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            font-weight: 600;
+            transition: 0.3s;
+            text-decoration: none;
+            display: inline-block;
+        }
+
+        .btn-primary {
+            background: #d4af37;
+            color: white;
+        }
+
+        .btn-primary:hover {
+            background: #b8962e;
+        }
+
+        .btn-secondary {
+            background: #f0f0f0;
+            color: #333;
+            border: 1px solid #ddd;
+        }
+
+        .btn-secondary:hover {
+            background: #e0e0e0;
+        }
+    </style>
+</head>
+<body>
+
+<div class="user-container">
+    <!-- User Header -->
+    <div class="user-header">
+        <div>
+            <h1>👤 My Dashboard</h1>
+        </div>
+        <div class="user-info">
+            <p><strong>Role:</strong> User</p>
+            <p id="userEmail"></p>
+            <p id="loginTime"></p>
+            <button class="logout-btn" onclick="logout()">Logout</button>
+        </div>
+    </div>
+
+    <!-- Profile Section -->
+    <div class="profile-section">
+        <h2>📋 My Profile</h2>
+        <div class="profile-detail">
+            <strong>Name:</strong> <span id="userName"></span>
+        </div>
+        <div class="profile-detail">
+            <strong>Email:</strong> <span id="userEmailProfile"></span>
+        </div>
+        <div class="profile-detail">
+            <strong>Phone:</strong> <span id="userPhone"></span>
+        </div>
+        <div class="profile-detail">
+            <strong>Member Since:</strong> <span id="memberSince"></span>
+        </div>
+    </div>
+
+    <!-- Action Buttons -->
+    <div class="action-buttons">
+        <a href="booking.html" class="btn btn-primary">🚗 Book a Car</a>
+        <a href="bike_booking.html" class="btn btn-primary">🏍️ Book a Bike</a>
+        <a href="index.html" class="btn btn-secondary">🏠 Back to Home</a>
+    </div>
+
+    <!-- Bookings Section -->
+    <div class="bookings-section">
+        <h2>📦 My Bookings</h2>
+        <div id="bookingsList"></div>
+    </div>
+</div>
+
+<script>
+    function checkUserAccess() {
+        const currentUser = JSON.parse(localStorage.getItem('currentUser'));
+        if (!currentUser || currentUser.role !== 'user') {
+            alert('Access Denied! User login required.');
+            window.location.href = 'login.html';
+            return false;
+        }
+        return true;
+    }
+
+    function loadUserDashboard() {
+        if (!checkUserAccess()) return;
+
+        const currentUser = JSON.parse(localStorage.getItem('currentUser'));
+        const users = JSON.parse(localStorage.getItem('registeredUsers')) || [];
+        
+        // Find current user details
+        const userData = users.find(u => u.email === currentUser.email);
+
+        if (!userData) {
+            alert('User data not found.');
+            window.location.href = 'login.html';
+            return;
+        }
+
+        // Display user info
+        document.getElementById('userEmail').textContent = 'Email: ' + currentUser.email;
+        document.getElementById('loginTime').textContent = 'Logged in: ' + currentUser.loginTime;
+        document.getElementById('userName').textContent = userData.name;
+        document.getElementById('userEmailProfile').textContent = userData.email;
+        document.getElementById('userPhone').textContent = userData.phone || 'Not provided';
+        document.getElementById('memberSince').textContent = userData.registeredAt;
+
+        // Display bookings
+        loadUserBookings(userData);
+    }
+
+    function loadUserBookings(userData) {
+        const bookingsList = document.getElementById('bookingsList');
+        bookingsList.innerHTML = '';
+
+        if (!userData.bookings || userData.bookings.length === 0) {
+            bookingsList.innerHTML = '<div class="no-bookings">No bookings yet. Start by booking a car or bike! 🎉</div>';
+            return;
+        }
+
+        userData.bookings.forEach((booking, index) => {
+            const bookingCard = document.createElement('div');
+            bookingCard.className = 'booking-card';
+            
+            const icon = booking.type === 'Car' ? '🚗' : '🏍️';
+            
+            bookingCard.innerHTML = `
+                <div class="booking-card-header">
+                    <div>
+                        <div class="booking-type">${icon} ${booking.type} Booking</div>
+                        <div class="booking-vehicle">${booking.carType || booking.bikeType}</div>
+                    </div>
+                    <div style="text-align: right; color: #d4af37; font-weight: 700; font-size: 18px;">$${booking.amount}</div>
+                </div>
+                <div class="booking-details">
+                    <div class="booking-detail-item">
+                        <div class="booking-detail-label">Phone</div>
+                        <div>${booking.phone}</div>
+                    </div>
+                    <div class="booking-detail-item">
+                        <div class="booking-detail-label">Booking Date</div>
+                        <div>${booking.bookingDate}</div>
+                    </div>
+                </div>
+            `;
+
+            bookingsList.appendChild(bookingCard);
+        });
+    }
+
+    function logout() {
+        localStorage.removeItem('currentUser');
+        alert('Logged out successfully.');
+        window.location.href = 'index.html';
+    }
+
+    window.addEventListener('load', loadUserDashboard);
+</script>
+
+</body>
+</html>

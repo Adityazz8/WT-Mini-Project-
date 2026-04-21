@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?xml-stylesheet type="text/xsl" href="employees.xsl"?>
+
+<!DOCTYPE employees SYSTEM "employees.dtd">
+
+<employees
+xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+xsi:noNamespaceSchemaLocation="employees.xsd">
+
+<employee>
+
+<emp_id>E101</emp_id>
+<name>Rahul Mehta</name>
+<role>Sales Manager</role>
+<department>Sales</department>
+<salary>85000</salary>
+<experience>5</experience>
+
+</employee>
+
+<employee>
+
+<emp_id>E102</emp_id>
+<name>Anjali Sharma</name>
+<role>Customer Executive</role>
+<department>Support</department>
+<salary>55000</salary>
+<experience>3</experience>
+
+</employee>
+
+<employee>
+
+<emp_id>E103</emp_id>
+<name>Vikram Singh</name>
+<role>Technical Specialist</role>
+<department>Maintenance</department>
+<salary>70000</salary>
+<experience>4</experience>
+
+</employee>
+
+<employee>
+
+<emp_id>E104</emp_id>
+<name>Priya Nair</name>
+<role>HR Manager</role>
+<department>HR</department>
+<salary>90000</salary>
+<experience>6</experience>
+
+</employee>
+
+</employees>
