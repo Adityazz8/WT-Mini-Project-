@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Car Booking Form - Veluxe Motors</title>
+    <link rel="stylesheet" href="../style.css">
+</head>
+<body>
+    <!-- NAVBAR -->
+    <header>
+        <div class="navbar-container">
+            <div class="logo">VELUXE</div>
+            <nav>
+                <a href="index.html">Home</a>
+                <a href="cars.html">Cars</a>
+                <a href="booking.html">Bookings</a>
+                <a href="contact.html">Contact</a>
+            </nav>
+        </div>
+    </header>
+
+    <!-- HERO -->
+    <section class="hero" style="height: 40vh;">
+        <div class="hero-content">
+            <h1>Car Booking Form</h1>
+            <p>Complete your car rental application</p>
+        </div>
+    </section>
+
+    <!-- REDIRECT MESSAGE -->
+    <section style="padding: 4rem 2rem; text-align: center;">
+        <div class="form-container">
+            <h2>Redirecting...</h2>
+            <p>This form has been integrated into our unified booking system.</p>
+            <p>You will be redirected in 3 seconds...</p>
+            <a href="booking.html" class="hero-btn" style="display: inline-block; margin-top: 1rem;">Click here to go to Booking</a>
+        </div>
+    </section>
+
+    <script>
+        setTimeout(() => {
+            window.location.href = 'booking.html';
+        }, 3000);
+    </script>
+</body>
+</html>

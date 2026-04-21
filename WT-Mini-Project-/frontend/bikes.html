@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Luxury Bikes - Veluxe Motors</title>
+    <link rel="stylesheet" href="../style.css">
+</head>
+<body>
+    <!-- NAVBAR -->
+    <header>
+        <div class="navbar-container">
+            <div class="logo">VELUXE</div>
+            <nav>
+                <a href="index.html">Home</a>
+                <a href="cars.html">Cars</a>
+                <a href="bikes.html" class="active">Bikes</a>
+                <a href="booking.html">Bookings</a>
+                <a href="contact.html">Contact</a>
+                <div id="userAccessArea"></div>
+            </nav>
+        </div>
+    </header>
+
+    <!-- HERO SECTION -->
+    <section class="hero" style="height: 50vh;">
+        <div class="hero-content">
+            <h1>Luxury Bikes Collection</h1>
+            <p>Feel the power and freedom</p>
+        </div>
+    </section>
+
+    <!-- BIKES LISTING -->
+    <section>
+        <h2>Our Premium Bikes</h2>
+        <div class="cards-grid" id="bikesContainer">
+            <!-- Bikes will be populated by JavaScript -->
+        </div>
+    </section>
+
+    <!-- FOOTER -->
+    <footer>
+        <div class="footer-content">
+            <div class="footer-section">
+                <h3>Veluxe Motors</h3>
+                <p>Your premium destination for luxury vehicle rentals.</p>
+            </div>
+            <div class="footer-section">
+                <h3>Quick Links</h3>
+                <a href="cars.html">Cars</a>
+                <a href="bikes.html">Bikes</a>
+                <a href="booking.html">Book Now</a>
+                <a href="contact.html">Contact</a>
+            </div>
+            <div class="footer-section">
+                <h3>Support</h3>
+                <a href="#">FAQ</a>
+                <a href="#">Support</a>
+                <a href="#">Terms & Conditions</a>
+                <a href="#">Privacy Policy</a>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 2026 Veluxe Motors. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <script>
+        const bikesData = [
+            { id: 1, name: 'Harley-Davidson Street Glide', price: '$200/day', image: 'https://images.unsplash.com/photo-1558981403-c5f9899a28bc?w=400&h=250&fit=crop', description: 'The ultimate cruising experience', specs: 'Twin-Cam 114cc, 0-60: 4.2s, Seats: 2' },
+            { id: 2, name: 'Ducati Panigale V4', price: '$180/day', image: 'https://images.unsplash.com/photo-1525609004556-c46c7d6cf023?w=400&h=250&fit=crop', description: 'Italian performance and style', specs: 'V4 1103cc, 0-60: 2.6s, Seats: 2' },
+            { id: 3, name: 'BMW S1000RR', price: '$170/day', image: 'https://images.unsplash.com/photo-1558981403-c5f9899a28bc?w=400&h=250&fit=crop', description: 'Pure adrenaline and power', specs: 'In-line 4 999cc, 0-60: 2.6s, Seats: 2' },
+            { id: 4, name: 'Kawasaki Ninja H2', price: '$190/day', image: 'https://images.unsplash.com/photo-1539860814587-d722a212433b?w=400&h=250&fit=crop', description: 'Supercharged beast', specs: 'Supercharged 998cc, 0-60: 2.5s, Seats: 2' },
+            { id: 5, name: 'Yamaha YZF-R1', price: '$160/day', image: 'https://images.unsplash.com/photo-1488360065604-8c7f7f0a4f3e?w=400&h=250&fit=crop', description: 'Legendary sportbike', specs: 'In-line 4 998cc, 0-60: 2.7s, Seats: 2' },
+            { id: 6, name: 'KTM Duke 390', price: '$80/day', image: 'https://images.unsplash.com/photo-1504384308090-c894fdcc538d?w=400&h=250&fit=crop', description: 'Agile and responsive', specs: 'Single-cylinder 373cc, 0-60: 4.0s, Seats: 2' }
+        ];
+
+        function renderBikes() {
+            const container = document.getElementById('bikesContainer');
+            container.innerHTML = '';
+            bikesData.forEach(bike => {
+                const card = document.createElement('div');
+                card.className = 'card fade-in';
+                card.innerHTML = `
+                    <img src="${bike.image}" alt="${bike.name}" class="card-image">
+                    <div class="card-content">
+                        <h3 class="card-title">${bike.name}</h3>
+                        <p class="card-text">${bike.description}</p>
+                        <p class="card-text" style="font-size: 0.85rem; color: #888;">${bike.specs}</p>
+                        <p class="card-price">${bike.price}</p>
+                        <button class="card-btn" onclick="goToBooking('${bike.name}')">Book Now</button>
+                    </div>
+                `;
+                container.appendChild(card);
+            });
+        }
+
+        function goToBooking(bikeName) {
+            localStorage.setItem('selectedItem', bikeName);
+            window.location.href = 'booking.html';
+        }
+
+        document.addEventListener('DOMContentLoaded', function() {
+            renderBikes();
+            updateUserAccessArea();
+        });
+
+        function updateUserAccessArea() {
+            const currentUser = JSON.parse(localStorage.getItem('currentUser'));
+            const userAccessArea = document.getElementById('userAccessArea');
+
+            if (currentUser) {
+                userAccessArea.innerHTML = `
+                    <a href="#" style="color: #d4af37; font-weight: 600;">👤 ${currentUser.name}</a>
+                    <button onclick="logout()" class="nav-link" style="text-decoration: underline;">Logout</button>
+                `;
+            } else {
+                userAccessArea.innerHTML = `
+                    <a href="login.html" class="nav-link">Login</a>
+                    <a href="register.html" class="nav-link">Register</a>
+                `;
+            }
+        }
+
+        function logout() {
+            localStorage.removeItem('currentUser');
+            alert('Logged out successfully.');
+            location.reload();
+        }
+    </script>
+</body>
+</html>
